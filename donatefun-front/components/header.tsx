@@ -5,10 +5,14 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
 import { motion, AnimatePresence } from "framer-motion"
+import Providers from "./privy"
+import { usePrivy } from "@privy-io/react-auth"
 
-export default function Header() {
+// Composant interne qui utilise les hooks de Privy
+function HeaderContent() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { login, authenticated, user, connectWallet } = usePrivy()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +22,12 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  // Fonction pour formater l'adresse du wallet
+  const formatAddress = (address: string | undefined): string => {
+    if (!address) return "";
+    return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
+  };
 
   return (
     <header
@@ -76,19 +86,24 @@ export default function Header() {
           <ModeToggle />
 
           <div className="hidden md:flex items-center gap-2">
-            <Link href="/auth/login">
-              <Button variant="ghost" size="sm" className="hover:bg-primary/10 transition-colors duration-200">
-                Log in
-              </Button>
-            </Link>
-            <Link href="/auth/signup">
-              <Button
-                size="sm"
+            {!authenticated ? (
+              <Button 
+                onClick={login}
+                size="sm" 
                 className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-300"
               >
-                Sign up
+                Log in
               </Button>
-            </Link>
+            ) : (
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="hover:bg-primary/10 transition-colors duration-200"
+                onClick={connectWallet}
+              >
+                {formatAddress(user?.wallet?.address)}
+              </Button>
+            )}
           </div>
 
           <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -170,20 +185,42 @@ export default function Header() {
               </nav>
 
               <div className="flex flex-col space-y-2">
-                <Link href="/auth/login" onClick={() => setIsMenuOpen(false)}>
-                  <Button variant="outline" className="w-full">
+                {!authenticated ? (
+                  <Button 
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      login();
+                    }}
+                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700"
+                  >
                     Log in
                   </Button>
-                </Link>
-                <Link href="/auth/signup" onClick={() => setIsMenuOpen(false)}>
-                  <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-700">Sign up</Button>
-                </Link>
+                ) : (
+                  <Button 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      connectWallet();
+                    }}
+                  >
+                    {formatAddress(user?.wallet?.address)}
+                  </Button>
+                )}
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </header>
+  )
+}
+
+export default function Header() {
+  return (
+    <Providers>
+      <HeaderContent />
+    </Providers>
   )
 }
 
