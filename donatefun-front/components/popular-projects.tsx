@@ -18,7 +18,7 @@ const POPULAR_PROJECTS = [
       { title: "Installation Phase", percentage: 30, completed: false },
       { title: "Community Training", percentage: 20, completed: false },
     ],
-    imageUrl: "/placeholder.svg?height=200&width=300",
+    imageUrl: "/clean-water-initiative.jpg",
     daysLeft: 12,
   },
   {
@@ -35,7 +35,7 @@ const POPULAR_PROJECTS = [
       { title: "Furnishing & Equipment", percentage: 20, completed: false },
       { title: "Staff Recruitment", percentage: 10, completed: false },
     ],
-    imageUrl: "/placeholder.svg?height=200&width=300",
+    imageUrl: "/education-for-all.png",
     daysLeft: 30,
   },
   {
@@ -51,7 +51,7 @@ const POPULAR_PROJECTS = [
       { title: "Staff Training", percentage: 20, completed: false },
       { title: "Operational Setup", percentage: 20, completed: false },
     ],
-    imageUrl: "/placeholder.svg?height=200&width=300",
+    imageUrl: "/medical-supplies-for-clinic.jpg",
     daysLeft: 5,
   },
 ]

@@ -54,9 +54,9 @@ const PROJECT = {
     },
   ],
   images: [
-    "/placeholder.svg?height=400&width=600",
-    "/placeholder.svg?height=400&width=600",
-    "/placeholder.svg?height=400&width=600",
+    "/clean-water-initiative.jpg",
+    "/water-pump-2.jpg",
+    "/water-pump-3.webp",
   ],
   creator: {
     id: "user123",
@@ -93,13 +93,13 @@ const PROJECT = {
       id: "2",
       title: "Sustainable Farming Initiative",
       category: "Environment",
-      image: "/placeholder.svg?height=100&width=200",
+      image: "/sustainable-farming-initiative.jpg",
     },
     {
       id: "3",
       title: "Clean Ocean Project",
       category: "Environment",
-      image: "/placeholder.svg?height=100&width=200",
+      image: "/clean-ocean-project.jpg",
     },
   ],
 }
