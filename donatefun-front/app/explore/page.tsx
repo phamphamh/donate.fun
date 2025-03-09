@@ -1,20 +1,21 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { motion } from "framer-motion"
-import ProjectCard from "@/components/project-card"
-import ExploreFilters from "@/components/explore-filters"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
+import ProjectCard from "@/components/project-card";
+import ExploreFilters from "@/components/explore-filters";
 
 // Mock data for projects
 const PROJECTS = [
   {
     id: "1",
     title: "Clean Water Initiative",
-    description: "Providing clean water access to rural communities in developing countries.",
+    description:
+      "Providing clean water access to rural communities in developing countries.",
     category: "Environment",
     goalAmount: 10000,
     raisedAmount: 6500,
@@ -36,7 +37,8 @@ const PROJECTS = [
   {
     id: "2",
     title: "Education for All",
-    description: "Building a school and providing educational resources for underprivileged children.",
+    description:
+      "Building a school and providing educational resources for underprivileged children.",
     category: "Education",
     goalAmount: 25000,
     raisedAmount: 15000,
@@ -59,7 +61,8 @@ const PROJECTS = [
   {
     id: "3",
     title: "Medical Supplies for Clinic",
-    description: "Providing essential medical supplies to a community clinic serving low-income families.",
+    description:
+      "Providing essential medical supplies to a community clinic serving low-income families.",
     category: "Healthcare",
     goalAmount: 15000,
     raisedAmount: 12000,
@@ -81,7 +84,8 @@ const PROJECTS = [
   {
     id: "4",
     title: "Community Garden Project",
-    description: "Creating a sustainable community garden to provide fresh produce and educational opportunities.",
+    description:
+      "Creating a sustainable community garden to provide fresh produce and educational opportunities.",
     category: "Community",
     goalAmount: 8000,
     raisedAmount: 2000,
@@ -103,7 +107,8 @@ const PROJECTS = [
   {
     id: "5",
     title: "Homeless Shelter Renovation",
-    description: "Renovating a local homeless shelter to improve living conditions and increase capacity.",
+    description:
+      "Renovating a local homeless shelter to improve living conditions and increase capacity.",
     category: "Community",
     goalAmount: 35000,
     raisedAmount: 12500,
@@ -125,7 +130,8 @@ const PROJECTS = [
   {
     id: "6",
     title: "Wildlife Conservation Effort",
-    description: "Protecting endangered species through habitat preservation and anti-poaching measures.",
+    description:
+      "Protecting endangered species through habitat preservation and anti-poaching measures.",
     category: "Environment",
     goalAmount: 50000,
     raisedAmount: 35000,
@@ -155,10 +161,10 @@ const PROJECTS = [
         image: "/placeholder.svg?height=50&width=50",
         verified: false,
       },
-    }
+    };
   }
-  return project
-})
+  return project;
+});
 
 // Category colors mapping
 const CATEGORY_COLORS = {
@@ -168,34 +174,38 @@ const CATEGORY_COLORS = {
   Community: "from-purple-500 to-violet-500 text-white",
   Technology: "from-cyan-500 to-blue-500 text-white",
   Arts: "from-amber-500 to-orange-500 text-white",
-}
+};
 
 export default function ExplorePage() {
-  const [projects, setProjects] = useState(PROJECTS)
-  const [activeCategory, setActiveCategory] = useState<string | null>(null)
-  const [isLoading, setIsLoading] = useState(false)
+  const [projects, setProjects] = useState(PROJECTS);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Filter projects by category
   useEffect(() => {
     if (!activeCategory) {
-      setProjects(PROJECTS)
-      return
+      setProjects(PROJECTS);
+      return;
     }
 
-    setIsLoading(true)
+    setIsLoading(true);
     // Simulate API call
     setTimeout(() => {
-      const filtered = PROJECTS.filter((project) => project.category === activeCategory)
-      setProjects(filtered)
-      setIsLoading(false)
-    }, 500)
-  }, [activeCategory])
+      const filtered = PROJECTS.filter(
+        (project) => project.category === activeCategory
+      );
+      setProjects(filtered);
+      setIsLoading(false);
+    }, 500);
+  }, [activeCategory]);
 
   const handleCategoryClick = (category: string) => {
-    setActiveCategory(activeCategory === category ? null : category)
-  }
+    setActiveCategory(activeCategory === category ? null : category);
+  };
 
-  const categories = Array.from(new Set(PROJECTS.map((project) => project.category)))
+  const categories = Array.from(
+    new Set(PROJECTS.map((project) => project.category))
+  );
 
   return (
     <main className="min-h-screen pb-12">
@@ -203,11 +213,18 @@ export default function ExplorePage() {
       <div className="bg-gradient-to-r from-indigo-800 to-purple-800 text-white">
         <div className="container py-8 md:py-12">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-              <h1 className="text-3xl font-bold tracking-tight mb-2">Explore Projects</h1>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h1 className="text-3xl font-bold tracking-tight mb-2">
+                Explore Projects
+              </h1>
               <p className="text-indigo-100 max-w-2xl">
-                Discover projects that need your support and make a difference. Browse by category or search for
-                specific causes you're passionate about.
+                Discover projects that need your support and make a difference.
+                Browse by category or search for specific causes you&apos;re
+                passionate about.
               </p>
             </motion.div>
 
@@ -258,8 +275,9 @@ export default function ExplorePage() {
                 <Badge
                   className={`px-4 py-2 text-sm cursor-pointer bg-gradient-to-r ${
                     activeCategory === category
-                      ? CATEGORY_COLORS[category as keyof typeof CATEGORY_COLORS] ||
-                        "from-gray-500 to-gray-600 text-white"
+                      ? CATEGORY_COLORS[
+                          category as keyof typeof CATEGORY_COLORS
+                        ] || "from-gray-500 to-gray-600 text-white"
                       : "from-white/20 to-white/10 hover:from-white/30 hover:to-white/20 text-white"
                   } border-none`}
                   onClick={() => handleCategoryClick(category)}
@@ -325,8 +343,12 @@ export default function ExplorePage() {
                         <path d="m21 21-4.3-4.3" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-medium mb-2">No projects found</h3>
-                    <p className="text-muted-foreground mb-4">Try adjusting your filters or search criteria</p>
+                    <h3 className="text-xl font-medium mb-2">
+                      No projects found
+                    </h3>
+                    <p className="text-muted-foreground mb-4">
+                      Try adjusting your filters or search criteria
+                    </p>
                     <Button
                       variant="outline"
                       onClick={() => setActiveCategory(null)}
@@ -359,6 +381,5 @@ export default function ExplorePage() {
         </div>
       </div>
     </main>
-  )
+  );
 }
-

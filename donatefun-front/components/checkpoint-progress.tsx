@@ -16,14 +16,50 @@ interface Checkpoint {
 
 interface CheckpointProgressProps {
   checkpoints: Checkpoint[]
+  category?: string
 }
 
-export default function CheckpointProgress({ checkpoints }: CheckpointProgressProps) {
+export default function CheckpointProgress({ checkpoints, category = "Environment" }: CheckpointProgressProps) {
   const [expandedId, setExpandedId] = useState<string | null>(null)
 
   const toggleExpand = (id: string) => {
     setExpandedId(expandedId === id ? null : id)
   }
+  
+  const getGradients = () => {
+    switch(category) {
+      case "Education":
+        return {
+          completed: "from-blue-500 to-indigo-500",
+          next: "from-blue-500 to-cyan-500",
+          bgCompleted: "from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30",
+          bgNext: "from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30"
+        }
+      case "Healthcare":
+        return {
+          completed: "from-red-500 to-pink-500",
+          next: "from-red-400 to-pink-400",
+          bgCompleted: "from-red-50 to-pink-50 dark:from-red-950/30 dark:to-pink-950/30",
+          bgNext: "from-red-50 to-pink-50 dark:from-red-950/30 dark:to-pink-950/30"
+        }
+      case "Community":
+        return {
+          completed: "from-purple-500 to-violet-500",
+          next: "from-purple-400 to-violet-400",
+          bgCompleted: "from-purple-50 to-violet-50 dark:from-purple-950/30 dark:to-violet-950/30",
+          bgNext: "from-purple-50 to-violet-50 dark:from-purple-950/30 dark:to-violet-950/30"
+        }
+      default:
+        return {
+          completed: "from-emerald-500 to-teal-500",
+          next: "from-blue-500 to-cyan-500",
+          bgCompleted: "from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/30",
+          bgNext: "from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30"
+        }
+    }
+  }
+  
+  const gradients = getGradients()
 
   return (
     <div className="space-y-4">
@@ -37,9 +73,9 @@ export default function CheckpointProgress({ checkpoints }: CheckpointProgressPr
           <Card
             className={`transition-all duration-300 overflow-hidden border-none shadow-md ${
               checkpoint.completed
-                ? "bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/30"
+                ? `bg-gradient-to-r ${gradients.bgCompleted}`
                 : index > 0 && checkpoints[index - 1].completed
-                  ? "bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30"
+                  ? `bg-gradient-to-r ${gradients.bgNext}`
                   : "bg-gradient-to-r from-gray-50 to-slate-50 dark:from-gray-950/30 dark:to-slate-950/30"
             }`}
           >
@@ -48,9 +84,9 @@ export default function CheckpointProgress({ checkpoints }: CheckpointProgressPr
                 <div
                   className={`h-10 w-10 rounded-full flex items-center justify-center shrink-0 transition-colors duration-300 ${
                     checkpoint.completed
-                      ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white"
+                      ? `bg-gradient-to-r ${gradients.completed} text-white`
                       : index > 0 && checkpoints[index - 1].completed
-                        ? "bg-gradient-to-r from-blue-500 to-cyan-500 text-white"
+                        ? `bg-gradient-to-r ${gradients.next} text-white`
                         : "bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 text-gray-500 dark:text-gray-300"
                   }`}
                 >
@@ -94,7 +130,7 @@ export default function CheckpointProgress({ checkpoints }: CheckpointProgressPr
                           strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          className="text-emerald-600"
+                          className={category === "Education" ? "text-blue-600" : "text-emerald-600"}
                         >
                           <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
                           <path d="m9 12 2 2 4-4" />
@@ -148,7 +184,11 @@ export default function CheckpointProgress({ checkpoints }: CheckpointProgressPr
                             transition={{ duration: 0.3 }}
                             className="overflow-hidden"
                           >
-                            <div className="mt-4 p-4 bg-white dark:bg-gray-800 rounded-lg border border-emerald-100 dark:border-emerald-900/30">
+                            <div className={`mt-4 p-4 bg-white dark:bg-gray-800 rounded-lg border ${
+                              category === "Education" 
+                                ? "border-blue-100 dark:border-blue-900/30" 
+                                : "border-emerald-100 dark:border-emerald-900/30"
+                            }`}>
                               <h4 className="font-medium mb-2">Verification Details</h4>
                               <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
                                 This checkpoint was verified on <span className="font-medium">October 15, 2023</span> by

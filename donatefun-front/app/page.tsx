@@ -1,9 +1,9 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import PopularProjects from "@/components/popular-projects"
-import HeroSection from "@/components/hero-section"
-import CategorySection from "@/components/category-section"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import PopularProjects from "@/components/popular-projects";
+import HeroSection from "@/components/hero-section";
+import CategorySection from "@/components/category-section";
 
 export default function Home() {
   return (
@@ -13,8 +13,12 @@ export default function Home() {
       <section className="container py-12 md:py-16">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <div>
-            <h2 className="text-3xl font-bold tracking-tight">Popular Projects</h2>
-            <p className="text-muted-foreground mt-2">Discover projects that are making a difference</p>
+            <h2 className="text-3xl font-bold tracking-tight">
+              Popular Projects
+            </h2>
+            <p className="text-muted-foreground mt-2">
+              Discover projects that are making a difference
+            </p>
           </div>
           <Link href="/explore" className="mt-4 md:mt-0">
             <Button variant="outline" className="gap-2">
@@ -48,7 +52,8 @@ export default function Home() {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-4">How Donate.fun Works</h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Our checkpoint system ensures transparency and builds trust between donors and recipients
+              Our checkpoint system ensures transparency and builds trust
+              between donors and recipients
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -72,7 +77,8 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-medium mb-2">Create a Project</h3>
                 <p className="text-muted-foreground">
-                  Define your funding goal and set up checkpoints to show how you'll use the funds
+                  Define your funding goal and set up checkpoints to show how
+                  you&apos;ll use the funds
                 </p>
               </Card>
 
@@ -96,7 +102,8 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-medium mb-2">Receive Donations</h3>
                 <p className="text-muted-foreground">
-                  Donors contribute to your cause and follow your progress through each checkpoint
+                  Donors contribute to your cause and follow your progress
+                  through each checkpoint
                 </p>
               </Card>
 
@@ -120,7 +127,8 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-medium mb-2">Validate Progress</h3>
                 <p className="text-muted-foreground">
-                  Provide proof at each checkpoint to unlock funds and build trust with donors
+                  Provide proof at each checkpoint to unlock funds and build
+                  trust with donors
                 </p>
               </Card>
             </div>
@@ -136,6 +144,5 @@ export default function Home() {
         </div>
       </section>
     </main>
-  )
+  );
 }
-

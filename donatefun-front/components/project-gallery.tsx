@@ -1,15 +1,16 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import Image from "next/image";
 
 interface ProjectGalleryProps {
-  images: string[]
+  images: string[];
 }
 
 export default function ProjectGallery({ images }: ProjectGalleryProps) {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   return (
     <>
@@ -24,11 +25,13 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
             onClick={() => setSelectedImage(image)}
             whileHover={{ scale: 1.02 }}
           >
-            <div className="aspect-video bg-gray-100 overflow-hidden">
-              <img
-                src={image || "/placeholder.svg"}
+            <div className="relative h-48 w-full">
+              <Image
+                src={image}
                 alt={`Project image ${index + 1}`}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                fill
+                className="object-cover rounded-lg"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
@@ -40,7 +43,10 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
         ))}
       </div>
 
-      <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
+      <Dialog
+        open={!!selectedImage}
+        onOpenChange={() => setSelectedImage(null)}
+      >
         <DialogContent className="max-w-4xl p-0 overflow-hidden bg-transparent border-none">
           <AnimatePresence>
             {selectedImage && (
@@ -51,11 +57,16 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
                 transition={{ duration: 0.3 }}
                 className="relative"
               >
-                <img
-                  src={selectedImage || "/placeholder.svg"}
-                  alt="Project image"
-                  className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
-                />
+                <div className="relative h-96 w-full">
+                  <Image
+                    src={selectedImage}
+                    alt="Project image"
+                    fill
+                    className="object-contain"
+                    sizes="100vw"
+                    priority
+                  />
+                </div>
                 <button
                   onClick={() => setSelectedImage(null)}
                   className="absolute top-2 right-2 h-8 w-8 rounded-full bg-black/50 flex items-center justify-center text-white hover:bg-black/70 transition-colors"
@@ -81,6 +92,5 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
         </DialogContent>
       </Dialog>
     </>
-  )
+  );
 }
-
