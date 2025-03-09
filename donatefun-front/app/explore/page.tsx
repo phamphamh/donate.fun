@@ -40,8 +40,8 @@ const PROJECTS = [
     description:
       "Building a school and providing educational resources for underprivileged children.",
     category: "Education",
-    goalAmount: 25000,
-    raisedAmount: 15000,
+    goalAmount: 50,
+    raisedAmount: 8,
     checkpoints: [
       { title: "Land Acquisition", percentage: 10, completed: true },
       { title: "Foundation Work", percentage: 20, completed: true },
