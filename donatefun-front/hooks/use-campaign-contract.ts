@@ -21,16 +21,15 @@ const PROJECT = {
   id: "2",
   title: "Education for All",
   description:
-    "We are raising $200 to provide school clothes and uniforms for children in Tunisia, ensuring they can attend school with dignity and confidence. Many families struggle to afford proper attire, which can lead to exclusion and barriers to education. By contributing to this project, you are helping to remove these obstacles, promoting equal opportunities, and supporting a child's right to learn in a supportive environment. Every donation goes directly to purchasing essential school clothing, with full transparency through our blockchain system. Join us in making a real difference—every contribution counts!",
+    "We are raising $50 to provide school clothes and uniforms for children in Tunisia, ensuring they can attend school with dignity and confidence. Many families struggle to afford proper attire, which can lead to exclusion and barriers to education. By contributing to this project, you are helping to remove these obstacles, promoting equal opportunities, and supporting a child's right to learn in a supportive environment. Every donation goes directly to purchasing essential school clothing, with full transparency through our blockchain system. Join us in making a real difference—every contribution counts!",
   category: "Education",
-  goalAmount: 200,
-  raisedAmount: 8000,
+  goalAmount: 50,
   checkpoints: [
     {
       id: "cp1",
       title: "Material Procurement",
       percentage: 30,
-      completed: true,
+      completed: false,
       description:
         "Purchase fabric and materials for school uniforms from local Tunisian suppliers.",
       proofUrl: "/placeholder.svg?height=300&width=500",
@@ -39,7 +38,7 @@ const PROJECT = {
       id: "cp2",
       title: "Production Phase",
       percentage: 20,
-      completed: true,
+      completed: false,
       description:
         "Local Tunisian tailors produce uniforms according to school specifications and size requirements.",
       proofUrl: "/placeholder.svg?height=300&width=500",
@@ -49,7 +48,8 @@ const PROJECT = {
       title: "Quality Control",
       percentage: 25,
       completed: false,
-      description: "Inspect all produced uniforms to ensure quality and durability for daily school wear.",
+      description:
+        "Inspect all produced uniforms to ensure quality and durability for daily school wear.",
       proofUrl: "",
     },
     {
@@ -57,7 +57,8 @@ const PROJECT = {
       title: "Distribution",
       percentage: 25,
       completed: false,
-      description: "Distribute uniform packages to identified children in three Tunisian communities.",
+      description:
+        "Distribute uniform packages to identified children in three Tunisian communities.",
       proofUrl: "",
     },
   ],
