@@ -74,7 +74,7 @@ export default function ProfilePage() {
       projectTitle: "Community Garden Project",
       amount: 200,
       date: "2023-08-05",
-      imageUrl: "/placeholder.svg?height=60&width=60",
+      imageUrl: "/community-garden-project.jpg",
       category: "Community",
       status: "In Progress",
     },

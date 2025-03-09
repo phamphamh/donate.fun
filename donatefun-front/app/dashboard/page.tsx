@@ -76,7 +76,7 @@ const MY_DONATIONS = [
     projectTitle: "Community Garden Project",
     amount: 50,
     date: "2023-11-15",
-    imageUrl: "/placeholder.svg?height=200&width=300",
+    imageUrl: "/community-garden-project.jpg",
     category: "Community",
   },
   {
@@ -85,7 +85,7 @@ const MY_DONATIONS = [
     projectTitle: "Homeless Shelter Renovation",
     amount: 100,
     date: "2023-10-28",
-    imageUrl: "/placeholder.svg?height=200&width=300",
+    imageUrl: "/homeless-shelter-renovation.webp",
     category: "Community",
   },
   {
@@ -94,7 +94,7 @@ const MY_DONATIONS = [
     projectTitle: "Wildlife Conservation Effort",
     amount: 75,
     date: "2023-09-12",
-    imageUrl: "/placeholder.svg?height=200&width=300",
+    imageUrl: "/wildlife-conservation-effort.jpg",
     category: "Environment",
   },
 ]

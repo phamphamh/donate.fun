@@ -91,7 +91,7 @@ const PROJECTS = [
       { title: "Irrigation System", percentage: 30, completed: false },
       { title: "Educational Materials", percentage: 20, completed: false },
     ],
-    imageUrl: "/placeholder.svg?height=200&width=300",
+    imageUrl: "/community-garden-project.jpg",
     daysLeft: 45,
     creator: {
       id: "user321",
@@ -113,7 +113,7 @@ const PROJECTS = [
       { title: "Interior Renovation", percentage: 25, completed: false },
       { title: "Furnishing", percentage: 20, completed: false },
     ],
-    imageUrl: "/placeholder.svg?height=200&width=300",
+    imageUrl: "/homeless-shelter-renovation.webp",
     daysLeft: 20,
     creator: {
       id: "user654",
@@ -135,7 +135,7 @@ const PROJECTS = [
       { title: "Field Operations", percentage: 30, completed: false },
       { title: "Community Education", percentage: 20, completed: false },
     ],
-    imageUrl: "/placeholder.svg?height=200&width=300",
+    imageUrl: "/wildlife-conservation-effort.jpg",
     daysLeft: 15,
     creator: {
       id: "user987",
