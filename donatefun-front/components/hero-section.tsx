@@ -1,30 +1,30 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { motion, useScroll, useTransform } from "framer-motion"
-import { useMobile } from "@/hooks/use-mobile"
+import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useMobile } from "@/hooks/use-mobile";
 
 export default function HeroSection() {
-  const [isVisible, setIsVisible] = useState(false)
-  const [activeCheckpoint, setActiveCheckpoint] = useState(2)
-  const isMobile = useMobile()
-  const heroRef = useRef<HTMLDivElement>(null)
-  const { scrollY } = useScroll()
-  const y = useTransform(scrollY, [0, 500], [0, 150])
-  const opacity = useTransform(scrollY, [0, 300], [1, 0])
+  const [isVisible, setIsVisible] = useState(false);
+  const [activeCheckpoint, setActiveCheckpoint] = useState(2);
+  const isMobile = useMobile();
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 500], [0, 150]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   useEffect(() => {
-    setIsVisible(true)
+    setIsVisible(true);
 
     // Cycle through checkpoints for animation effect
     const interval = setInterval(() => {
-      setActiveCheckpoint((prev) => (prev === 3 ? 0 : prev + 1))
-    }, 3000)
+      setActiveCheckpoint((prev) => (prev === 3 ? 0 : prev + 1));
+    }, 3000);
 
-    return () => clearInterval(interval)
-  }, [])
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section
@@ -32,41 +32,61 @@ export default function HeroSection() {
       className="relative overflow-hidden bg-gradient-to-br from-indigo-900 via-purple-900 to-violet-900 text-white py-20 md:py-32"
     >
       {/* Animated background elements */}
-      <motion.div className="absolute inset-0 overflow-hidden" style={{ opacity }}>
+      <motion.div
+        className="absolute inset-0 overflow-hidden"
+        style={{ opacity }}
+      >
         {/* Colorful gradient blobs */}
         <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-pink-500/20 blur-3xl"></div>
         <div className="absolute top-1/2 -left-24 h-64 w-64 rounded-full bg-cyan-500/20 blur-3xl"></div>
         <div className="absolute bottom-0 right-1/3 h-80 w-80 rounded-full bg-yellow-500/10 blur-3xl"></div>
 
         {/* Animated grid lines */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
+            backgroundSize: "40px 40px",
+          }}
+        ></div>
 
         {/* Floating particles */}
-        {Array.from({ length: 20 }).map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full"
-            initial={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              scale: Math.random() * 0.5 + 0.5,
-              background: `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.2)`,
-            }}
-            animate={{
-              y: [0, -20, 0],
-              opacity: [0.1, 0.4, 0.1],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: Math.random() * 5,
-            }}
-            style={{
-              width: `${Math.random() * 100 + 20}px`,
-              height: `${Math.random() * 100 + 20}px`,
-            }}
-          ></motion.div>
-        ))}
+        {Array.from({ length: 20 }).map((_, i) => {
+          // Use deterministic values based on index instead of random
+          const top = (i * 17) % 100;
+          const left = (i * 23) % 100;
+          const scale = 0.5 + ((i * 13) % 50) / 100;
+          const r = (i * 37) % 255;
+          const g = (i * 71) % 255;
+          const b = (i * 97) % 255;
+
+          return (
+            <motion.div
+              key={i}
+              className="absolute rounded-full"
+              initial={{
+                top: `${top}%`,
+                left: `${left}%`,
+                scale: scale,
+                background: `rgba(${r}, ${g}, ${b}, 0.2)`,
+              }}
+              animate={{
+                y: [0, -20, 0],
+                opacity: [0.1, 0.4, 0.1],
+              }}
+              transition={{
+                duration: 10 + (i % 5),
+                repeat: Number.POSITIVE_INFINITY,
+                delay: i * 0.2,
+              }}
+              style={{
+                width: `${20 + ((i * 31) % 80)}px`,
+                height: `${20 + ((i * 31) % 80)}px`,
+              }}
+            ></motion.div>
+          );
+        })}
       </motion.div>
 
       <div className="container relative z-10">
@@ -106,8 +126,9 @@ export default function HeroSection() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              Navigate through projects, track your impact in real-time, and ensure your contributions create real
-              change through our transparent validation system.
+              Navigate through projects, track your impact in real-time, and
+              ensure your contributions create real change through our
+              transparent validation system.
             </motion.p>
 
             <motion.div
@@ -167,7 +188,8 @@ export default function HeroSection() {
                 ))}
               </div>
               <p className="text-sm text-indigo-100">
-                <span className="font-medium">1,234+</span> projects funded through our checkpoint system
+                <span className="font-medium">1,234+</span> projects funded
+                through our checkpoint system
               </p>
             </motion.div>
 
@@ -263,7 +285,11 @@ export default function HeroSection() {
                 <div className="space-y-6">
                   {/* Checkpoint 1 */}
                   <motion.div
-                    className={`flex items-center gap-4 p-4 rounded-lg transition-all duration-500 ${activeCheckpoint === 0 ? "bg-gradient-to-r from-pink-500/30 to-purple-500/30 border border-pink-500/50 scale-105" : ""}`}
+                    className={`flex items-center gap-4 p-4 rounded-lg transition-all duration-500 ${
+                      activeCheckpoint === 0
+                        ? "bg-gradient-to-r from-pink-500/30 to-purple-500/30 border border-pink-500/50 scale-105"
+                        : ""
+                    }`}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.6, duration: 0.5 }}
@@ -286,14 +312,22 @@ export default function HeroSection() {
                     </div>
                     <div className="flex-1">
                       <div className="font-medium">Equipment Purchase</div>
-                      <div className="text-sm text-indigo-200/70">20% of total funding</div>
+                      <div className="text-sm text-indigo-200/70">
+                        20% of total funding
+                      </div>
                     </div>
-                    <div className="text-sm font-medium text-green-400">VERIFIED</div>
+                    <div className="text-sm font-medium text-green-400">
+                      VERIFIED
+                    </div>
                   </motion.div>
 
                   {/* Checkpoint 2 */}
                   <motion.div
-                    className={`flex items-center gap-4 p-4 rounded-lg transition-all duration-500 ${activeCheckpoint === 1 ? "bg-gradient-to-r from-pink-500/30 to-purple-500/30 border border-pink-500/50 scale-105" : ""}`}
+                    className={`flex items-center gap-4 p-4 rounded-lg transition-all duration-500 ${
+                      activeCheckpoint === 1
+                        ? "bg-gradient-to-r from-pink-500/30 to-purple-500/30 border border-pink-500/50 scale-105"
+                        : ""
+                    }`}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.8, duration: 0.5 }}
@@ -316,14 +350,22 @@ export default function HeroSection() {
                     </div>
                     <div className="flex-1">
                       <div className="font-medium">Team Deployment</div>
-                      <div className="text-sm text-indigo-200/70">30% of total funding</div>
+                      <div className="text-sm text-indigo-200/70">
+                        30% of total funding
+                      </div>
                     </div>
-                    <div className="text-sm font-medium text-green-400">VERIFIED</div>
+                    <div className="text-sm font-medium text-green-400">
+                      VERIFIED
+                    </div>
                   </motion.div>
 
                   {/* Checkpoint 3 - Current */}
                   <motion.div
-                    className={`flex items-center gap-4 p-4 rounded-lg transition-all duration-500 ${activeCheckpoint === 2 ? "bg-gradient-to-r from-pink-500/30 to-purple-500/30 border border-pink-500/50 scale-105" : ""}`}
+                    className={`flex items-center gap-4 p-4 rounded-lg transition-all duration-500 ${
+                      activeCheckpoint === 2
+                        ? "bg-gradient-to-r from-pink-500/30 to-purple-500/30 border border-pink-500/50 scale-105"
+                        : ""
+                    }`}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 1.0, duration: 0.5 }}
@@ -334,14 +376,22 @@ export default function HeroSection() {
                     </div>
                     <div className="flex-1">
                       <div className="font-medium">Installation Phase</div>
-                      <div className="text-sm text-indigo-200/70">30% of total funding</div>
+                      <div className="text-sm text-indigo-200/70">
+                        30% of total funding
+                      </div>
                     </div>
-                    <div className="text-sm font-medium text-cyan-400">IN PROGRESS</div>
+                    <div className="text-sm font-medium text-cyan-400">
+                      IN PROGRESS
+                    </div>
                   </motion.div>
 
                   {/* Checkpoint 4 */}
                   <motion.div
-                    className={`flex items-center gap-4 p-4 rounded-lg transition-all duration-500 ${activeCheckpoint === 3 ? "bg-gradient-to-r from-pink-500/30 to-purple-500/30 border border-pink-500/50 scale-105" : ""}`}
+                    className={`flex items-center gap-4 p-4 rounded-lg transition-all duration-500 ${
+                      activeCheckpoint === 3
+                        ? "bg-gradient-to-r from-pink-500/30 to-purple-500/30 border border-pink-500/50 scale-105"
+                        : ""
+                    }`}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 0.7, x: 0 }}
                     transition={{ delay: 1.2, duration: 0.5 }}
@@ -352,9 +402,13 @@ export default function HeroSection() {
                     </div>
                     <div className="flex-1">
                       <div className="font-medium">Community Training</div>
-                      <div className="text-sm text-indigo-200/70">20% of total funding</div>
+                      <div className="text-sm text-indigo-200/70">
+                        20% of total funding
+                      </div>
                     </div>
-                    <div className="text-sm font-medium text-gray-400">LOCKED</div>
+                    <div className="text-sm font-medium text-gray-400">
+                      LOCKED
+                    </div>
                   </motion.div>
                 </div>
 
@@ -365,7 +419,9 @@ export default function HeroSection() {
                   transition={{ delay: 1.4, duration: 0.5 }}
                 >
                   <div className="flex justify-between items-center mb-2">
-                    <div className="text-sm text-indigo-200/70">Project Progress</div>
+                    <div className="text-sm text-indigo-200/70">
+                      Project Progress
+                    </div>
                     <div className="text-sm font-medium">65%</div>
                   </div>
 
@@ -374,7 +430,11 @@ export default function HeroSection() {
                       className="h-full bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 rounded-full"
                       initial={{ width: "0%" }}
                       animate={{ width: "65%" }}
-                      transition={{ delay: 1.6, duration: 1.5, ease: "easeOut" }}
+                      transition={{
+                        delay: 1.6,
+                        duration: 1.5,
+                        ease: "easeOut",
+                      }}
                     />
                   </div>
 
@@ -401,7 +461,9 @@ export default function HeroSection() {
                       </div>
                       <div>
                         <div className="text-sm font-medium">78</div>
-                        <div className="text-xs text-indigo-200/70">Backers</div>
+                        <div className="text-xs text-indigo-200/70">
+                          Backers
+                        </div>
                       </div>
                     </div>
 
@@ -421,7 +483,11 @@ export default function HeroSection() {
               <motion.div
                 className="absolute -top-6 -right-6 h-20 w-20 bg-gradient-to-r from-pink-500/20 to-purple-500/20 backdrop-blur-sm rounded-lg flex items-center justify-center border border-white/10 shadow-xl z-20"
                 animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                transition={{
+                  duration: 5,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "easeInOut",
+                }}
               >
                 <div className="text-center">
                   <div className="text-xl font-bold">65%</div>
@@ -432,7 +498,12 @@ export default function HeroSection() {
               <motion.div
                 className="absolute -bottom-4 -left-4 h-16 w-32 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 backdrop-blur-sm rounded-lg flex items-center justify-center border border-white/10 shadow-xl z-20"
                 animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 }}
+                transition={{
+                  duration: 5,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "easeInOut",
+                  delay: 1,
+                }}
               >
                 <div className="flex items-center gap-2">
                   <svg
@@ -461,6 +532,5 @@ export default function HeroSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-
