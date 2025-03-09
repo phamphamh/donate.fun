@@ -269,15 +269,6 @@ export default function DashboardPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                     >
-                      <div className="relative h-48 w-full">
-                        <Image
-                          src={project.imageUrl}
-                          alt={project.title}
-                          fill
-                          className="object-cover rounded-lg"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-                      </div>
                       <DashboardProjectCard
                         project={project}
                         onCheckpointSubmit={handleCheckpointSubmit}
@@ -372,7 +363,7 @@ export default function DashboardPage() {
                               {donation.date}
                             </td>
                             <td className="py-3 px-4">
-                              <Link href={`/project/${donation.projectId}`}>
+                              <Link href={`/project/${donation.id}`}>
                                 <Button
                                   variant="ghost"
                                   size="sm"
@@ -445,15 +436,6 @@ export default function DashboardPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <div className="relative h-48 w-full">
-                    <Image
-                      src={project.imageUrl}
-                      alt={project.title}
-                      fill
-                      className="object-cover rounded-lg"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                  </div>
                   <DashboardProjectCard
                     project={project}
                     onCheckpointSubmit={handleCheckpointSubmit}
@@ -541,7 +523,7 @@ export default function DashboardPage() {
                             {donation.date}
                           </td>
                           <td className="py-3 px-4">
-                            <Link href={`/project/${donation.projectId}`}>
+                            <Link href={`/project/${donation.id}`}>
                               <Button
                                 variant="ghost"
                                 size="sm"
