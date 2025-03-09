@@ -153,7 +153,9 @@ export function useCampaignContract() {
   return {
     project: {
       ...PROJECT,
-      raisedAmount: campaign ? campaign[5] || BigInt(0) : BigInt(0),
+      raisedAmount: campaign
+        ? campaign[5] * BigInt(10 ** 10) || BigInt(0)
+        : BigInt(0),
       backers: campaign ? Number(campaign[4]) : 0,
     },
     contributions,
