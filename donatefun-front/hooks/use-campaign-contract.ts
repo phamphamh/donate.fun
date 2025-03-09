@@ -125,8 +125,6 @@ export function useCampaignContract() {
     abi: CampaignManagerABI.abi,
     functionName: "contributions",
     query: {
-      staleTime: 1000,
-      gcTime: 1000,
       refetchInterval: 1000,
     },
     args: [BigInt(0)], // Campaign ID 0
