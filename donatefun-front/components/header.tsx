@@ -17,7 +17,7 @@ import { LogOut, Wallet, Plus } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { useBalance } from "wagmi";
-import { Address } from "viem";
+import { Address, formatEther } from "viem";
 
 // Composant interne qui utilise les hooks de Privy
 function HeaderContent() {
@@ -188,7 +188,7 @@ function HeaderContent() {
                       >
                         <span className="flex items-center gap-2">
                           <span className="text-sm font-medium">
-                            ${balanceData?.value}
+                            $HBAR {formatEther(balanceData?.value || BigInt(0))}
                           </span>
                           {formatAddress(user?.wallet?.address)}
                         </span>
@@ -321,7 +321,9 @@ function HeaderContent() {
                   <>
                     <div className="flex justify-between items-center p-3 bg-primary/5 rounded-lg mb-2">
                       <span className="text-sm font-medium">Balance:</span>
-                      <span className="font-bold">${balanceData?.value}</span>
+                      <span className="font-bold">
+                        $HBAR {formatEther(balanceData?.value || BigInt(0))}
+                      </span>
                     </div>
                     <Button
                       variant="outline"
@@ -341,16 +343,6 @@ function HeaderContent() {
                       onClick={() => {
                         setIsMenuOpen(false);
                         handleDisconnectWallet();
-                      }}
-                    >
-                      Disconnect Wallet
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="w-full"
-                      onClick={() => {
-                        setIsMenuOpen(false);
-                        handleLogout();
                       }}
                     >
                       Log Out
