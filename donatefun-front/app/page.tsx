@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import PopularProjects from "@/components/popular-projects";
 import HeroSection from "@/components/hero-section";
 import CategorySection from "@/components/category-section";
+import DonationLeaderboard from "@/components/donation-leaderboard";
 
 export default function Home() {
   return (
@@ -47,7 +48,27 @@ export default function Home() {
 
       <CategorySection />
 
-      <section className="bg-blue-50 py-16">
+      {/* Donation Leaderboard Section */}
+      <section className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 py-12 md:py-16">
+        <div className="container">
+          <div className="flex flex-col md:flex-row justify-between items-center mb-8">
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight">
+                Top Supporters
+              </h2>
+              <p className="text-muted-foreground mt-2">
+                Celebrating those who make the biggest impact
+              </p>
+            </div>
+          </div>
+          
+          <div className="max-w-4xl mx-auto">
+            <DonationLeaderboard />
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-blue-50 dark:bg-blue-950/20 py-16">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-4">How Donate.fun Works</h2>

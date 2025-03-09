@@ -150,6 +150,12 @@ function HeaderContent() {
               Explore
             </Link>
             <Link
+              href="/supporters"
+              className="text-sm font-medium hover:text-primary transition-colors duration-200"
+            >
+              Supporters
+            </Link>
+            <Link
               href="/dashboard"
               className="text-sm font-medium hover:text-primary transition-colors duration-200"
             >
@@ -289,6 +295,13 @@ function HeaderContent() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Explore
+                </Link>
+                <Link
+                  href="/supporters"
+                  className="text-sm font-medium hover:text-primary transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Supporters
                 </Link>
                 <Link
                   href="/dashboard"
