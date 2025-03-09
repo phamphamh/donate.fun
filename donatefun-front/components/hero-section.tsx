@@ -164,9 +164,27 @@ export default function HeroSection() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white/30 text-white hover:bg-white/10 transition-all duration-300"
+                  className="bg-white/5 border-white/20 text-white hover:bg-white/10 hover:border-white/30 backdrop-blur-sm transition-all duration-300 group"
                 >
-                  My Dashboard
+                  <span>My Dashboard</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="ml-2 opacity-70 transition-transform duration-300 group-hover:translate-x-1"
+                  >
+                    <rect width="18" height="18" x="3" y="3" rx="2" />
+                    <path d="M9 3v18" />
+                    <path d="M13 7h4" />
+                    <path d="M13 11h4" />
+                    <path d="M13 15h4" />
+                  </svg>
                 </Button>
               </Link>
             </motion.div>

@@ -6,6 +6,8 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
+    --font-heading: var(--font-fredoka);
+    --font-body: var(--font-baloo);
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -69,23 +71,30 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-body;
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
   }
 
   /* Apply cartoon fonts to headings */
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    @apply font-bold;
   }
-  
+
   /* Make headings more playful with slightly larger sizes */
   h1 {
     @apply text-4xl md:text-5xl;
   }
-  
+
   h2 {
     @apply text-3xl md:text-4xl;
   }
-  
+
   h3 {
     @apply text-2xl md:text-3xl;
   }
@@ -127,4 +136,3 @@
 .animate-pulse-ring {
   animation: pulse-ring 3s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
 }
-

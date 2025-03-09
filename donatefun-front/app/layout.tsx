@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 import type React from "react";
-import { Inter } from "next/font/google";
+import { Fredoka, Baloo_2 } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/header";
@@ -8,30 +7,15 @@ import Footer from "@/components/footer";
 import { Toaster } from "@/components/ui/toaster";
 import Providers from "@/components/privy";
 
-const inter = Inter({ subsets: ["latin"] });
-=======
-import type React from "react"
-import { Fredoka, Baloo_2 } from "next/font/google"
-import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import Header from "@/components/header"
-import Footer from "@/components/footer"
-import { Toaster } from "@/components/ui/toaster"
-
-// Font for headings (cartoon-like, bold)
-const fredoka = Fredoka({ 
+const fredoka = Fredoka({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-fredoka"
-})
+  variable: "--font-heading",
+});
 
-// Font for body text (friendly, rounded)
-const baloo = Baloo_2({ 
+const baloo = Baloo_2({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-baloo"
-})
->>>>>>> 6467620c36de4d2511b73656b2afe4b8f77048b2
+  variable: "--font-baloo",
+});
 
 export const metadata = {
   title: "Donate.fun - Transparent Donations with Checkpoints",
@@ -45,9 +29,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-<<<<<<< HEAD
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className} suppressHydrationWarning>
+      <body
+        className={`${fredoka.variable} ${baloo.variable}`}
+        suppressHydrationWarning
+      >
         <Providers>
           <ThemeProvider
             attribute="class"
@@ -64,18 +50,6 @@ export default function RootLayout({
             </div>
           </ThemeProvider>
         </Providers>
-=======
-    <html lang="en">
-      <body className={`${fredoka.variable} ${baloo.variable} font-body`}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            {children}
-            <Footer />
-            <Toaster />
-          </div>
-        </ThemeProvider>
->>>>>>> 6467620c36de4d2511b73656b2afe4b8f77048b2
       </body>
     </html>
   );
