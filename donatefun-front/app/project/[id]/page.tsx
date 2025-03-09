@@ -9,6 +9,7 @@ import CheckpointProgress from "@/components/checkpoint-progress";
 import DonationButton from "@/components/donation-button";
 import ProjectGallery from "@/components/project-gallery";
 import CreatorCard from "@/components/creator-card";
+import { toast } from "@/hooks/use-toast";
 
 // Mock data for a single project
 const PROJECT = {

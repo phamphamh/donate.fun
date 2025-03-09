@@ -12,7 +12,7 @@ contract CampaignManagerScript is Script {
     function run() public {
         vm.startBroadcast();
 
-        manager = new CampaignManager(address(0));
+        manager = new CampaignManager();
 
         vm.stopBroadcast();
     }

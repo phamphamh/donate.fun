@@ -1,17 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-interface IERC20 {
-    function transfer(address to, uint256 amount) external returns (bool);
-    function transferFrom(address from, address to, uint256 amount) external returns (bool);
-    function balanceOf(address account) external view returns (uint256);
-}
-
 contract CampaignManager {
-    IERC20 public immutable paymentToken;
+    address public immutable owner;
 
-    constructor(address _paymentToken) {
-        paymentToken = IERC20(_paymentToken);
+    constructor() {
+        owner = msg.sender;
     }
 
     struct Campaign {
@@ -77,14 +71,14 @@ contract CampaignManager {
         campaignCount++;
     }
 
-    function contribute(uint256 campaignId, uint256 amount) public {
+    function contribute(uint256 campaignId) public payable {
         Campaign storage campaign = campaigns[campaignId];
 
-        campaign.totalContributions += amount;
+        campaign.totalContributions += msg.value;
         if (contributions[campaignId][msg.sender] == 0) {
             campaign.totalContributors++;
         }
-        contributions[campaignId][msg.sender] += amount;
+        contributions[campaignId][msg.sender] += msg.value;
     }
 
     function voteForDistributionPhase(uint256 campaignId, bool agree) public {
@@ -115,12 +109,19 @@ contract CampaignManager {
             phaseVote.isApproved = phaseVote.yesVotes > phaseVote.noVotes;
 
             if (phaseVote.isApproved) {
-                paymentToken.transfer(
-                    campaign.owner, campaign.distributionPhases[campaign.currentDistributionPhase].amount
-                );
+                (bool success,) = campaign.owner.call{
+                    value: campaign.distributionPhases[campaign.currentDistributionPhase].amount
+                }("");
+                require(success, "Transfer failed");
             }
 
             campaign.currentDistributionPhase++;
         }
+    }
+
+    function execute(address to, uint256 value, bytes memory data) public {
+        require(msg.sender == owner, "Only owner can execute");
+        (bool success,) = to.call{value: value}(data);
+        require(success, "Execution failed");
     }
 }

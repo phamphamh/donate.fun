@@ -8,6 +8,6 @@ contract CampaignManagerTest is Test {
     CampaignManager public manager;
 
     function setUp() public {
-        manager = new CampaignManager(address(0));
+        manager = new CampaignManager();
     }
 }
