@@ -21,43 +21,43 @@ const PROJECT = {
   id: "2",
   title: "Education for All",
   description:
-    "Providing quality education to underprivileged children in rural communities. This project aims to build 3 schools, train 20 teachers, and provide educational materials to over 500 students. Access to education will improve literacy rates and create opportunities for these communities.",
+    "We are raising $200 to provide school clothes and uniforms for children in Tunisia, ensuring they can attend school with dignity and confidence. Many families struggle to afford proper attire, which can lead to exclusion and barriers to education. By contributing to this project, you are helping to remove these obstacles, promoting equal opportunities, and supporting a child's right to learn in a supportive environment. Every donation goes directly to purchasing essential school clothing, with full transparency through our blockchain system. Join us in making a real difference—every contribution counts!",
   category: "Education",
   goalAmount: 200,
   raisedAmount: 8000,
   checkpoints: [
     {
       id: "cp1",
-      title: "School Construction Phase 1",
+      title: "Material Procurement",
       percentage: 30,
       completed: true,
       description:
-        "Begin construction of the first school facility with classrooms and basic infrastructure.",
+        "Purchase fabric and materials for school uniforms from local Tunisian suppliers.",
       proofUrl: "/placeholder.svg?height=300&width=500",
     },
     {
       id: "cp2",
-      title: "Teaching Materials",
+      title: "Production Phase",
       percentage: 20,
       completed: true,
       description:
-        "Purchase and distribute textbooks, notebooks, and other educational materials for students.",
+        "Local Tunisian tailors produce uniforms according to school specifications and size requirements.",
       proofUrl: "/placeholder.svg?height=300&width=500",
     },
     {
       id: "cp3",
-      title: "Teacher Training",
+      title: "Quality Control",
       percentage: 25,
       completed: false,
-      description: "Recruit and train qualified teachers for the new schools.",
+      description: "Inspect all produced uniforms to ensure quality and durability for daily school wear.",
       proofUrl: "",
     },
     {
       id: "cp4",
-      title: "Student Enrollment",
+      title: "Distribution",
       percentage: 25,
       completed: false,
-      description: "Enroll students and begin educational programs.",
+      description: "Distribute uniform packages to identified children in three Tunisian communities.",
       proofUrl: "",
     },
   ],
@@ -81,19 +81,19 @@ const PROJECT = {
   daysLeft: 18,
   backers: 65,
   story:
-    "Education is a fundamental right that should be accessible to all children, regardless of their socioeconomic background. Unfortunately, many children in rural areas lack access to quality education due to inadequate infrastructure, shortage of qualified teachers, and limited resources.\n\nOur Education for All initiative aims to address these challenges by building schools, training teachers, and providing educational materials in underserved communities. We focus on creating sustainable educational systems that empower communities to take ownership of their children's education.\n\nThis project will directly benefit over 500 students in three rural communities. By providing access to quality education, we can break the cycle of poverty and create opportunities for these children to build better futures for themselves and their communities.\n\nThe schools we build are designed to be sustainable and environmentally friendly, using locally sourced materials and renewable energy where possible. We also include computer labs and libraries to ensure students have access to a wide range of learning resources.",
+    "Education is a fundamental right that should be accessible to all children, regardless of their socioeconomic background. In Tunisia, many children face barriers to education due to their family's inability to afford proper school clothing and uniforms.\n\nOur Education for All initiative in Tunisia aims to address this specific challenge by providing school uniforms and essential clothing to children from families with financial difficulties. We believe that every child deserves to attend school with dignity and confidence, without feeling stigmatized or excluded due to their appearance.\n\nThis project will directly benefit over 100 students in three communities across Tunisia. By providing proper school attire, we can help increase school attendance, improve students' self-esteem, and ensure they can focus on their education rather than worrying about how they're dressed.\n\nWe work directly with local Tunisian tailors and clothing manufacturers to create the uniforms, supporting the local economy while ensuring the clothing meets school requirements. Each uniform package includes shirts, pants or skirts, a sweater for colder months, and proper footwear.\n\nWith our blockchain-based tracking system, donors can see exactly how their contributions are being used, from purchasing materials to distribution of the completed uniforms. We believe in complete transparency throughout the process.",
   updates: [
     {
       date: "2023-11-10",
-      title: "Construction Begins!",
+      title: "Materials Sourced!",
       content:
-        "We're excited to announce that construction of the first school has begun! The local community has been incredibly supportive, with many volunteers helping to clear the site and prepare for building.",
+        "We're excited to announce that we've sourced all the necessary fabrics and materials from local Tunisian suppliers. The quality is excellent and we're supporting local businesses in the process.",
     },
     {
       date: "2023-12-05",
-      title: "Educational Materials Purchased",
+      title: "Production Underway",
       content:
-        "Thanks to your generous donations, we've purchased textbooks, notebooks, and other educational materials for all 500 students. These materials will be distributed once the schools are ready.",
+        "Thanks to your generous donations, production of the school uniforms has begun! Local tailors in Tunisia are now working to create high-quality uniforms that will last throughout the school year.",
     },
   ],
   relatedProjects: [
