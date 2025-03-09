@@ -1,18 +1,26 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { motion } from "framer-motion"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Progress } from "@/components/ui/progress"
+import { useState } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardFooter,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Progress } from "@/components/ui/progress";
 
 export default function ProfilePage() {
-  const [activeTab, setActiveTab] = useState("overview")
+  const [activeTab, setActiveTab] = useState("overview");
 
+  activeTab;
   // Mock user data
   const user = {
     name: "Alex Johnson",
@@ -30,11 +38,23 @@ export default function ProfilePage() {
       following: 68,
     },
     badges: [
-      { name: "Early Supporter", icon: "🌟", color: "bg-gradient-to-r from-amber-500 to-yellow-500" },
-      { name: "Verified Donor", icon: "✅", color: "bg-gradient-to-r from-green-500 to-emerald-500" },
-      { name: "Community Builder", icon: "🏗️", color: "bg-gradient-to-r from-blue-500 to-cyan-500" },
+      {
+        name: "Early Supporter",
+        icon: "🌟",
+        color: "bg-gradient-to-r from-amber-500 to-yellow-500",
+      },
+      {
+        name: "Verified Donor",
+        icon: "✅",
+        color: "bg-gradient-to-r from-green-500 to-emerald-500",
+      },
+      {
+        name: "Community Builder",
+        icon: "🏗️",
+        color: "bg-gradient-to-r from-blue-500 to-cyan-500",
+      },
     ],
-  }
+  };
 
   // Mock donations data
   const donations = [
@@ -78,14 +98,15 @@ export default function ProfilePage() {
       category: "Community",
       status: "In Progress",
     },
-  ]
+  ];
 
   // Mock projects data
   const projects = [
     {
       id: "p1",
       title: "Local Beach Cleanup",
-      description: "Organizing volunteers to clean up coastal areas and educate the community about plastic pollution.",
+      description:
+        "Organizing volunteers to clean up coastal areas and educate the community about plastic pollution.",
       category: "Environment",
       raised: 3200,
       goal: 5000,
@@ -97,7 +118,8 @@ export default function ProfilePage() {
     {
       id: "p2",
       title: "Tech Workshops for Kids",
-      description: "Teaching programming and digital skills to underprivileged children in the community.",
+      description:
+        "Teaching programming and digital skills to underprivileged children in the community.",
       category: "Education",
       raised: 1800,
       goal: 2500,
@@ -106,7 +128,7 @@ export default function ProfilePage() {
       imageUrl: "/placeholder.svg?height=150&width=300",
       status: "Active",
     },
-  ]
+  ];
 
   // Mock activity data
   const activities = [
@@ -120,7 +142,8 @@ export default function ProfilePage() {
     {
       id: "a2",
       type: "checkpoint",
-      description: "Verified checkpoint 'Equipment Purchase' for Local Beach Cleanup",
+      description:
+        "Verified checkpoint 'Equipment Purchase' for Local Beach Cleanup",
       date: "2023-11-10",
       icon: "✅",
     },
@@ -145,7 +168,7 @@ export default function ProfilePage() {
       date: "2023-10-01",
       icon: "🏆",
     },
-  ]
+  ];
 
   return (
     <main className="min-h-screen pb-20">
@@ -162,7 +185,9 @@ export default function ProfilePage() {
               <div className="h-32 w-32 md:h-40 md:w-40 rounded-full overflow-hidden border-4 border-white/20 shadow-xl bg-gradient-to-br from-indigo-500 to-purple-500">
                 <Avatar className="h-full w-full">
                   <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="text-2xl">{user.name.charAt(0)}</AvatarFallback>
+                  <AvatarFallback className="text-2xl">
+                    {user.name.charAt(0)}
+                  </AvatarFallback>
                 </Avatar>
 
                 {/* Badges positioned on the avatar */}
@@ -264,12 +289,16 @@ export default function ProfilePage() {
                 className="flex flex-wrap gap-6 justify-center md:justify-start"
               >
                 <div className="text-center">
-                  <div className="text-2xl font-bold">${user.stats.donated}</div>
+                  <div className="text-2xl font-bold">
+                    ${user.stats.donated}
+                  </div>
                   <div className="text-sm text-indigo-100">Donated</div>
                 </div>
 
                 <div className="text-center">
-                  <div className="text-2xl font-bold">{user.stats.projects}</div>
+                  <div className="text-2xl font-bold">
+                    {user.stats.projects}
+                  </div>
                   <div className="text-sm text-indigo-100">Projects</div>
                 </div>
 
@@ -279,12 +308,16 @@ export default function ProfilePage() {
                 </div>
 
                 <div className="text-center">
-                  <div className="text-2xl font-bold">{user.stats.followers}</div>
+                  <div className="text-2xl font-bold">
+                    {user.stats.followers}
+                  </div>
                   <div className="text-sm text-indigo-100">Followers</div>
                 </div>
 
                 <div className="text-center">
-                  <div className="text-2xl font-bold">{user.stats.following}</div>
+                  <div className="text-2xl font-bold">
+                    {user.stats.following}
+                  </div>
                   <div className="text-sm text-indigo-100">Following</div>
                 </div>
               </motion.div>
@@ -296,8 +329,13 @@ export default function ProfilePage() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="flex flex-col gap-3"
             >
-              <Button className="bg-white text-purple-600 hover:bg-white/90">Edit Profile</Button>
-              <Button variant="outline" className="border-white/30 text-white hover:bg-white/10">
+              <Button className="bg-white text-purple-600 hover:bg-white/90">
+                Edit Profile
+              </Button>
+              <Button
+                variant="outline"
+                className="border-white/30 text-white hover:bg-white/10"
+              >
                 Share Profile
               </Button>
             </motion.div>
@@ -307,7 +345,11 @@ export default function ProfilePage() {
 
       {/* Profile content */}
       <div className="container py-8">
-        <Tabs defaultValue="overview" onValueChange={setActiveTab} className="w-full">
+        <Tabs
+          defaultValue="overview"
+          onValueChange={setActiveTab}
+          className="w-full"
+        >
           <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="donations">Donations</TabsTrigger>
@@ -347,8 +389,12 @@ export default function ProfilePage() {
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <div className="text-3xl font-bold mb-2">${user.stats.donated}</div>
-                      <p className="text-sm text-muted-foreground">Across {donations.length} projects</p>
+                      <div className="text-3xl font-bold mb-2">
+                        ${user.stats.donated}
+                      </div>
+                      <p className="text-sm text-muted-foreground">
+                        Across {donations.length} projects
+                      </p>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -381,8 +427,12 @@ export default function ProfilePage() {
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <div className="text-3xl font-bold mb-2">{user.stats.projects}</div>
-                      <p className="text-sm text-muted-foreground">{projects.length} active projects</p>
+                      <div className="text-3xl font-bold mb-2">
+                        {user.stats.projects}
+                      </div>
+                      <p className="text-sm text-muted-foreground">
+                        {projects.length} active projects
+                      </p>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -415,8 +465,12 @@ export default function ProfilePage() {
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <div className="text-3xl font-bold mb-2">{user.stats.impact}</div>
-                      <p className="text-sm text-muted-foreground">Top 5% of all users</p>
+                      <div className="text-3xl font-bold mb-2">
+                        {user.stats.impact}
+                      </div>
+                      <p className="text-sm text-muted-foreground">
+                        Top 5% of all users
+                      </p>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -442,16 +496,25 @@ export default function ProfilePage() {
                             />
                           </div>
                           <div className="flex-1">
-                            <h3 className="font-medium">{donation.projectTitle}</h3>
+                            <h3 className="font-medium">
+                              {donation.projectTitle}
+                            </h3>
                             <div className="flex justify-between items-center">
-                              <div className="text-sm text-muted-foreground">{donation.category}</div>
-                              <Badge variant="outline" className="text-green-500 border-green-500">
+                              <div className="text-sm text-muted-foreground">
+                                {donation.category}
+                              </div>
+                              <Badge
+                                variant="outline"
+                                className="text-green-500 border-green-500"
+                              >
                                 {donation.status}
                               </Badge>
                             </div>
                           </div>
                           <div className="ml-4 text-right">
-                            <div className="font-bold text-lg">${donation.amount}</div>
+                            <div className="font-bold text-lg">
+                              ${donation.amount}
+                            </div>
                             <div className="text-xs text-muted-foreground">
                               {new Date(donation.date).toLocaleDateString()}
                             </div>
@@ -462,7 +525,10 @@ export default function ProfilePage() {
                   ))}
                 </div>
                 <div className="mt-4 text-center">
-                  <Button variant="outline" onClick={() => setActiveTab("donations")}>
+                  <Button
+                    variant="outline"
+                    onClick={() => setActiveTab("donations")}
+                  >
                     View All Donations
                   </Button>
                 </div>
@@ -485,18 +551,31 @@ export default function ProfilePage() {
                           className="h-full w-full object-cover"
                         />
                         <div className="absolute top-2 right-2">
-                          <Badge className="bg-green-500">{project.status}</Badge>
+                          <Badge className="bg-green-500">
+                            {project.status}
+                          </Badge>
                         </div>
                       </div>
                       <CardContent className="pt-4">
-                        <h3 className="text-lg font-bold mb-1">{project.title}</h3>
-                        <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{project.description}</p>
+                        <h3 className="text-lg font-bold mb-1">
+                          {project.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                          {project.description}
+                        </p>
 
                         <div className="flex justify-between text-sm mb-1">
-                          <span className="font-medium">${project.raised.toLocaleString()}</span>
-                          <span className="text-muted-foreground">of ${project.goal.toLocaleString()}</span>
+                          <span className="font-medium">
+                            ${project.raised.toLocaleString()}
+                          </span>
+                          <span className="text-muted-foreground">
+                            of ${project.goal.toLocaleString()}
+                          </span>
                         </div>
-                        <Progress value={(project.raised / project.goal) * 100} className="h-2 mb-3" />
+                        <Progress
+                          value={(project.raised / project.goal) * 100}
+                          className="h-2 mb-3"
+                        />
 
                         <div className="flex justify-between">
                           <div className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -515,7 +594,8 @@ export default function ProfilePage() {
                               <path d="m9 12 2 2 4-4" />
                             </svg>
                             <span>
-                              {project.checkpoints}/{project.totalCheckpoints} checkpoints
+                              {project.checkpoints}/{project.totalCheckpoints}{" "}
+                              checkpoints
                             </span>
                           </div>
 
@@ -530,7 +610,10 @@ export default function ProfilePage() {
                   ))}
                 </div>
                 <div className="mt-4 text-center">
-                  <Button variant="outline" onClick={() => setActiveTab("projects")}>
+                  <Button
+                    variant="outline"
+                    onClick={() => setActiveTab("projects")}
+                  >
                     View All Projects
                   </Button>
                 </div>
@@ -542,7 +625,9 @@ export default function ProfilePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
-                <h2 className="text-xl font-bold mb-4">Badges & Achievements</h2>
+                <h2 className="text-xl font-bold mb-4">
+                  Badges & Achievements
+                </h2>
                 <div className="flex flex-wrap gap-4">
                   {user.badges.map((badge, index) => (
                     <Card key={index} className="w-full md:w-auto">
@@ -554,7 +639,9 @@ export default function ProfilePage() {
                         </div>
                         <div>
                           <h3 className="font-medium">{badge.name}</h3>
-                          <p className="text-sm text-muted-foreground">Earned in {user.joinedDate}</p>
+                          <p className="text-sm text-muted-foreground">
+                            Earned in {user.joinedDate}
+                          </p>
                         </div>
                       </CardContent>
                     </Card>
@@ -567,7 +654,9 @@ export default function ProfilePage() {
               <Card>
                 <CardHeader>
                   <CardTitle>Donation History</CardTitle>
-                  <CardDescription>All your contributions to projects on Donate.fun</CardDescription>
+                  <CardDescription>
+                    All your contributions to projects on Donate.fun
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
@@ -583,9 +672,13 @@ export default function ProfilePage() {
                               />
                             </div>
                             <div className="flex-1">
-                              <h3 className="font-medium">{donation.projectTitle}</h3>
+                              <h3 className="font-medium">
+                                {donation.projectTitle}
+                              </h3>
                               <div className="flex justify-between items-center">
-                                <div className="text-sm text-muted-foreground">{donation.category}</div>
+                                <div className="text-sm text-muted-foreground">
+                                  {donation.category}
+                                </div>
                                 <Badge
                                   variant="outline"
                                   className={
@@ -599,7 +692,9 @@ export default function ProfilePage() {
                               </div>
                             </div>
                             <div className="ml-4 text-right">
-                              <div className="font-bold text-lg">${donation.amount}</div>
+                              <div className="font-bold text-lg">
+                                ${donation.amount}
+                              </div>
                               <div className="text-xs text-muted-foreground">
                                 {new Date(donation.date).toLocaleDateString()}
                               </div>
@@ -620,7 +715,9 @@ export default function ProfilePage() {
               <Card>
                 <CardHeader>
                   <CardTitle>Your Projects</CardTitle>
-                  <CardDescription>Projects you've created or are actively managing</CardDescription>
+                  <CardDescription>
+                    Projects you've created or are actively managing
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -633,18 +730,31 @@ export default function ProfilePage() {
                             className="h-full w-full object-cover"
                           />
                           <div className="absolute top-2 right-2">
-                            <Badge className="bg-green-500">{project.status}</Badge>
+                            <Badge className="bg-green-500">
+                              {project.status}
+                            </Badge>
                           </div>
                         </div>
                         <CardContent className="pt-4">
-                          <h3 className="text-lg font-bold mb-1">{project.title}</h3>
-                          <p className="text-sm text-muted-foreground mb-3">{project.description}</p>
+                          <h3 className="text-lg font-bold mb-1">
+                            {project.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground mb-3">
+                            {project.description}
+                          </p>
 
                           <div className="flex justify-between text-sm mb-1">
-                            <span className="font-medium">${project.raised.toLocaleString()}</span>
-                            <span className="text-muted-foreground">of ${project.goal.toLocaleString()}</span>
+                            <span className="font-medium">
+                              ${project.raised.toLocaleString()}
+                            </span>
+                            <span className="text-muted-foreground">
+                              of ${project.goal.toLocaleString()}
+                            </span>
                           </div>
-                          <Progress value={(project.raised / project.goal) * 100} className="h-2 mb-3" />
+                          <Progress
+                            value={(project.raised / project.goal) * 100}
+                            className="h-2 mb-3"
+                          />
 
                           <div className="flex justify-between">
                             <div className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -663,7 +773,8 @@ export default function ProfilePage() {
                                 <path d="m9 12 2 2 4-4" />
                               </svg>
                               <span>
-                                {project.checkpoints}/{project.totalCheckpoints} checkpoints
+                                {project.checkpoints}/{project.totalCheckpoints}{" "}
+                                checkpoints
                               </span>
                             </div>
 
@@ -713,7 +824,9 @@ export default function ProfilePage() {
               <Card>
                 <CardHeader>
                   <CardTitle>Recent Activity</CardTitle>
-                  <CardDescription>Your recent actions and achievements on the platform</CardDescription>
+                  <CardDescription>
+                    Your recent actions and achievements on the platform
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-6">
@@ -723,7 +836,9 @@ export default function ProfilePage() {
                           {activity.icon}
                         </div>
                         <div className="flex-1 border-b pb-6">
-                          <div className="font-medium">{activity.description}</div>
+                          <div className="font-medium">
+                            {activity.description}
+                          </div>
                           <div className="text-sm text-muted-foreground">
                             {new Date(activity.date).toLocaleDateString()}
                           </div>
@@ -741,6 +856,5 @@ export default function ProfilePage() {
         </Tabs>
       </div>
     </main>
-  )
+  );
 }
-

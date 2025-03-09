@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { useState } from "react";
+import Link from "next/link";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
   DialogContent,
@@ -12,33 +12,33 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
-import { Textarea } from "@/components/ui/textarea"
-import ProgressBar from "@/components/progress-bar"
-import { motion } from "framer-motion"
+} from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
+import ProgressBar from "@/components/progress-bar";
+import { motion } from "framer-motion";
 
 interface Checkpoint {
-  title: string
-  percentage: number
-  completed: boolean
+  title: string;
+  percentage: number;
+  completed: boolean;
 }
 
 interface Project {
-  id: string
-  title: string
-  description: string
-  category: string
-  goalAmount: number
-  raisedAmount: number
-  checkpoints: Checkpoint[]
-  imageUrl: string
-  daysLeft: number
-  status: "active" | "completed" | "draft"
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  goalAmount: number;
+  raisedAmount: number;
+  checkpoints: Checkpoint[];
+  imageUrl: string;
+  daysLeft: number;
+  status: "active" | "completed" | "draft";
 }
 
 interface DashboardProjectCardProps {
-  project: Project
-  onCheckpointSubmit: (projectId: string) => void
+  project: Project;
+  onCheckpointSubmit: (projectId: string) => void;
 }
 
 // Category colors mapping
@@ -49,39 +49,46 @@ const CATEGORY_COLORS = {
   Community: "from-purple-500 to-violet-500 text-white",
   Technology: "from-cyan-500 to-blue-500 text-white",
   Arts: "from-amber-500 to-orange-500 text-white",
-}
+};
 
 // Status colors mapping
 const STATUS_COLORS = {
   active: "from-green-500 to-emerald-500 text-white",
   completed: "from-blue-500 to-indigo-500 text-white",
   draft: "from-gray-500 to-slate-500 text-white",
-}
+};
 
-export default function DashboardProjectCard({ project, onCheckpointSubmit }: DashboardProjectCardProps) {
-  const [isSubmitOpen, setIsSubmitOpen] = useState(false)
-  const [isUploading, setIsUploading] = useState(false)
+export default function DashboardProjectCard({
+  project,
+  onCheckpointSubmit,
+}: DashboardProjectCardProps) {
+  const [isSubmitOpen, setIsSubmitOpen] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const [nextCheckpoint, setNextCheckpoint] = useState<Checkpoint | null>(
-    project.checkpoints.find((c) => !c.completed) || null,
-  )
+    project.checkpoints.find((c) => !c.completed) || null
+  );
 
-  const percentComplete = Math.round((project.raisedAmount / project.goalAmount) * 100)
+  const percentComplete = Math.round(
+    (project.raisedAmount / project.goalAmount) * 100
+  );
 
   const categoryColor =
-    CATEGORY_COLORS[project.category as keyof typeof CATEGORY_COLORS] || "from-gray-500 to-gray-600 text-white"
+    CATEGORY_COLORS[project.category as keyof typeof CATEGORY_COLORS] ||
+    "from-gray-500 to-gray-600 text-white";
   const statusColor =
-    STATUS_COLORS[project.status as keyof typeof STATUS_COLORS] || "from-gray-500 to-gray-600 text-white"
+    STATUS_COLORS[project.status as keyof typeof STATUS_COLORS] ||
+    "from-gray-500 to-gray-600 text-white";
 
   const handleSubmitProof = () => {
-    setIsUploading(true)
+    setIsUploading(true);
 
     // Simulate upload
     setTimeout(() => {
-      setIsUploading(false)
-      setIsSubmitOpen(false)
-      onCheckpointSubmit(project.id)
-    }, 1500)
-  }
+      setIsUploading(false);
+      setIsSubmitOpen(false);
+      onCheckpointSubmit(project.id);
+    }, 1500);
+  };
 
   return (
     <motion.div
@@ -92,11 +99,21 @@ export default function DashboardProjectCard({ project, onCheckpointSubmit }: Da
     >
       <Card className="overflow-hidden flex flex-col h-full transition-all duration-300 hover:shadow-lg border-none shadow-md">
         <div className="relative">
-          <img src={project.imageUrl || "/placeholder.svg"} alt={project.title} className="w-full h-40 object-cover" />
+          <img
+            src={project.imageUrl || "/placeholder.svg"}
+            alt={project.title}
+            className="w-full h-40 object-cover"
+          />
           <div className="absolute top-3 right-3 flex gap-2">
-            <Badge className={`bg-gradient-to-r ${categoryColor} border-none`}>{project.category}</Badge>
+            <Badge className={`bg-gradient-to-r ${categoryColor} border-none`}>
+              {project.category}
+            </Badge>
             <Badge className={`bg-gradient-to-r ${statusColor} border-none`}>
-              {project.status === "active" ? "Active" : project.status === "completed" ? "Completed" : "Draft"}
+              {project.status === "active"
+                ? "Active"
+                : project.status === "completed"
+                ? "Completed"
+                : "Draft"}
             </Badge>
           </div>
         </div>
@@ -106,8 +123,12 @@ export default function DashboardProjectCard({ project, onCheckpointSubmit }: Da
 
           <div className="mb-4">
             <div className="flex justify-between text-sm mb-1">
-              <span className="font-medium">${project.raisedAmount.toLocaleString()}</span>
-              <span className="text-muted-foreground">of ${project.goalAmount.toLocaleString()}</span>
+              <span className="font-medium">
+                ${project.raisedAmount.toLocaleString()}
+              </span>
+              <span className="text-muted-foreground">
+                of ${project.goalAmount.toLocaleString()}
+              </span>
             </div>
             <ProgressBar
               value={percentComplete}
@@ -115,12 +136,12 @@ export default function DashboardProjectCard({ project, onCheckpointSubmit }: Da
                 project.category === "Environment"
                   ? "green"
                   : project.category === "Healthcare"
-                    ? "red"
-                    : project.category === "Education"
-                      ? "blue"
-                      : project.category === "Community"
-                        ? "purple"
-                        : "blue"
+                  ? "red"
+                  : project.category === "Education"
+                  ? "blue"
+                  : project.category === "Community"
+                  ? "purple"
+                  : "blue"
               }
               size="md"
               animated={true}
@@ -143,7 +164,11 @@ export default function DashboardProjectCard({ project, onCheckpointSubmit }: Da
                 <circle cx="12" cy="12" r="10" />
                 <polyline points="12 6 12 12 16 14" />
               </svg>
-              <span>{project.daysLeft > 0 ? `${project.daysLeft} days left` : "Ended"}</span>
+              <span>
+                {project.daysLeft > 0
+                  ? `${project.daysLeft} days left`
+                  : "Ended"}
+              </span>
             </div>
 
             <div className="flex items-center gap-1 text-muted-foreground">
@@ -162,15 +187,20 @@ export default function DashboardProjectCard({ project, onCheckpointSubmit }: Da
                 <path d="m9 12 2 2 4-4" />
               </svg>
               <span>
-                {project.checkpoints.filter((c) => c.completed).length} of {project.checkpoints.length}
+                {project.checkpoints.filter((c) => c.completed).length} of{" "}
+                {project.checkpoints.length}
               </span>
             </div>
           </div>
 
           {nextCheckpoint && project.status === "active" && (
             <div className="bg-gradient-to-r from-indigo-50 to-blue-50 dark:from-indigo-950/30 dark:to-blue-950/30 p-3 rounded-lg mb-4">
-              <div className="text-sm font-medium text-indigo-700 dark:text-indigo-300 mb-1">Next Checkpoint:</div>
-              <div className="text-sm text-indigo-600 dark:text-indigo-400">{nextCheckpoint.title}</div>
+              <div className="text-sm font-medium text-indigo-700 dark:text-indigo-300 mb-1">
+                Next Checkpoint:
+              </div>
+              <div className="text-sm text-indigo-600 dark:text-indigo-400">
+                {nextCheckpoint.title}
+              </div>
               <div className="mt-2">
                 <Button
                   size="sm"
@@ -209,13 +239,16 @@ export default function DashboardProjectCard({ project, onCheckpointSubmit }: Da
           <DialogHeader>
             <DialogTitle>Submit Checkpoint Proof</DialogTitle>
             <DialogDescription>
-              Provide evidence that you've completed the "{nextCheckpoint?.title}" checkpoint.
+              Provide evidence that you've completed the "
+              {nextCheckpoint?.title}" checkpoint.
             </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-4 py-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium">Upload Photos/Documents</label>
+              <label className="text-sm font-medium">
+                Upload Photos/Documents
+              </label>
               <div className="border-2 border-dashed border-indigo-200 dark:border-indigo-800 rounded-lg p-8 text-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -233,10 +266,19 @@ export default function DashboardProjectCard({ project, onCheckpointSubmit }: Da
                   <path d="M18 2v4h4" />
                   <path d="M21 8H16a2 2 0 0 1-2-2V1" />
                 </svg>
-                <p className="text-muted-foreground mb-2">Drag and drop files here, or click to browse</p>
-                <p className="text-xs text-muted-foreground">PNG, JPG, PDF (max. 10MB each)</p>
+                <p className="text-muted-foreground mb-2">
+                  Drag and drop files here, or click to browse
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  PNG, JPG, PDF (max. 10MB each)
+                </p>
                 <input type="file" className="hidden" multiple />
-                <Button type="button" variant="outline" size="sm" className="mt-4 bg-white dark:bg-gray-800">
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  className="mt-4 bg-white dark:bg-gray-800"
+                >
                   Upload Files
                 </Button>
               </div>
@@ -296,6 +338,5 @@ export default function DashboardProjectCard({ project, onCheckpointSubmit }: Da
         </DialogContent>
       </Dialog>
     </motion.div>
-  )
+  );
 }
-

@@ -1,14 +1,14 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import ProgressBar from "@/components/progress-bar"
-import CheckpointProgress from "@/components/checkpoint-progress"
-import DonationButton from "@/components/donation-button"
-import ProjectGallery from "@/components/project-gallery"
-import CreatorCard from "@/components/creator-card"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import ProgressBar from "@/components/progress-bar";
+import CheckpointProgress from "@/components/checkpoint-progress";
+import DonationButton from "@/components/donation-button";
+import ProjectGallery from "@/components/project-gallery";
+import CreatorCard from "@/components/creator-card";
 
 // Mock data for a single project
 const PROJECT = {
@@ -25,7 +25,8 @@ const PROJECT = {
       title: "Equipment Purchase",
       percentage: 20,
       completed: true,
-      description: "Purchase water filtration systems and necessary tools for installation.",
+      description:
+        "Purchase water filtration systems and necessary tools for installation.",
       proofUrl: "/placeholder.svg?height=300&width=500",
     },
     {
@@ -33,7 +34,8 @@ const PROJECT = {
       title: "Team Deployment",
       percentage: 30,
       completed: true,
-      description: "Send our team of engineers and volunteers to the target communities.",
+      description:
+        "Send our team of engineers and volunteers to the target communities.",
       proofUrl: "/placeholder.svg?height=300&width=500",
     },
     {
@@ -49,7 +51,8 @@ const PROJECT = {
       title: "Community Training",
       percentage: 20,
       completed: false,
-      description: "Train community members on system maintenance and water conservation.",
+      description:
+        "Train community members on system maintenance and water conservation.",
       proofUrl: "",
     },
   ],
@@ -102,11 +105,13 @@ const PROJECT = {
       image: "/clean-ocean-project.jpg",
     },
   ],
-}
+};
 
-export default function ProjectPage({ params }: { params: { id: string } }) {
-  const project = PROJECT // In a real app, you would fetch the project by ID
-  const percentComplete = Math.round((project.raisedAmount / project.goalAmount) * 100)
+export default function ProjectPage() {
+  const project = PROJECT; // In a real app, you would fetch the project by ID
+  const percentComplete = Math.round(
+    (project.raisedAmount / project.goalAmount) * 100
+  );
 
   return (
     <main className="min-h-screen pb-12">
@@ -138,8 +143,12 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               <Badge className="bg-gradient-to-r from-emerald-500 to-teal-500 mb-3 border-none">
                 {project.category}
               </Badge>
-              <h1 className="text-3xl md:text-4xl font-bold mb-4">{project.title}</h1>
-              <p className="text-emerald-100 text-lg mb-4 max-w-3xl">{project.description}</p>
+              <h1 className="text-3xl md:text-4xl font-bold mb-4">
+                {project.title}
+              </h1>
+              <p className="text-emerald-100 text-lg mb-4 max-w-3xl">
+                {project.description}
+              </p>
 
               <div className="flex flex-wrap gap-4 items-center">
                 <div className="flex items-center gap-3 bg-white/10 px-4 py-2 rounded-lg">
@@ -199,7 +208,8 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                     <path d="m9 12 2 2 4-4" />
                   </svg>
                   <span>
-                    {project.checkpoints.filter((c) => c.completed).length} of {project.checkpoints.length} checkpoints
+                    {project.checkpoints.filter((c) => c.completed).length} of{" "}
+                    {project.checkpoints.length} checkpoints
                   </span>
                 </div>
               </div>
@@ -211,8 +221,13 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               className="flex items-center gap-3 bg-white/10 hover:bg-white/20 p-3 rounded-lg transition-all duration-300 group"
             >
               <Avatar className="h-12 w-12 border-2 border-emerald-300">
-                <AvatarImage src={project.creator.image} alt={project.creator.name} />
-                <AvatarFallback className="bg-emerald-700">{project.creator.name.charAt(0)}</AvatarFallback>
+                <AvatarImage
+                  src={project.creator.image}
+                  alt={project.creator.name}
+                />
+                <AvatarFallback className="bg-emerald-700">
+                  {project.creator.name.charAt(0)}
+                </AvatarFallback>
               </Avatar>
               <div>
                 <div className="font-medium flex items-center gap-2">
@@ -235,7 +250,9 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                     </svg>
                   )}
                 </div>
-                <div className="text-sm text-emerald-200">{project.creator.projectsCompleted} projects completed</div>
+                <div className="text-sm text-emerald-200">
+                  {project.creator.projectsCompleted} projects completed
+                </div>
               </div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -354,7 +371,10 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {project.relatedProjects.map((relatedProject) => (
-                      <Link key={relatedProject.id} href={`/project/${relatedProject.id}`}>
+                      <Link
+                        key={relatedProject.id}
+                        href={`/project/${relatedProject.id}`}
+                      >
                         <Card className="overflow-hidden hover:shadow-md transition-shadow">
                           <div className="h-32 overflow-hidden">
                             <img
@@ -367,7 +387,9 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                             <Badge className="mb-2 bg-emerald-100 text-emerald-800 hover:bg-emerald-200 dark:bg-emerald-900 dark:text-emerald-100">
                               {relatedProject.category}
                             </Badge>
-                            <h4 className="font-medium">{relatedProject.title}</h4>
+                            <h4 className="font-medium">
+                              {relatedProject.title}
+                            </h4>
                           </CardContent>
                         </Card>
                       </Link>
@@ -379,10 +401,13 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               <TabsContent value="checkpoints" className="mt-6">
                 <div className="space-y-6">
                   <div className="p-6 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/30 rounded-xl">
-                    <h3 className="text-xl font-medium mb-2">How Checkpoints Work</h3>
+                    <h3 className="text-xl font-medium mb-2">
+                      How Checkpoints Work
+                    </h3>
                     <p className="text-muted-foreground mb-4">
-                      This project uses checkpoints to ensure transparency. The recipient must provide proof at each
-                      stage to receive the allocated funds.
+                      This project uses checkpoints to ensure transparency. The
+                      recipient must provide proof at each stage to receive the
+                      allocated funds.
                     </p>
                     <div className="flex flex-wrap gap-4">
                       <div className="flex items-center gap-2 bg-white dark:bg-gray-800 px-3 py-1 rounded-full text-sm">
@@ -474,8 +499,12 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                             </svg>
                           </div>
                           <div>
-                            <div className="text-sm text-muted-foreground">{update.date}</div>
-                            <h3 className="text-xl font-medium">{update.title}</h3>
+                            <div className="text-sm text-muted-foreground">
+                              {update.date}
+                            </div>
+                            <h3 className="text-xl font-medium">
+                              {update.title}
+                            </h3>
                           </div>
                         </div>
                         <p>{update.content}</p>
@@ -494,10 +523,20 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               <CardContent className="pt-6">
                 <div className="mb-4">
                   <div className="flex justify-between text-sm mb-1">
-                    <span className="font-medium">${project.raisedAmount.toLocaleString()}</span>
-                    <span className="text-muted-foreground">of ${project.goalAmount.toLocaleString()}</span>
+                    <span className="font-medium">
+                      ${project.raisedAmount.toLocaleString()}
+                    </span>
+                    <span className="text-muted-foreground">
+                      of ${project.goalAmount.toLocaleString()}
+                    </span>
                   </div>
-                  <ProgressBar value={percentComplete} showLabel size="lg" color="green" animated={true} />
+                  <ProgressBar
+                    value={percentComplete}
+                    showLabel
+                    size="lg"
+                    color="green"
+                    animated={true}
+                  />
                 </div>
 
                 <div className="flex justify-between mb-6 text-sm">
@@ -617,7 +656,14 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                         strokeLinejoin="round"
                         className="text-pink-600"
                       >
-                        <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                        <rect
+                          width="20"
+                          height="20"
+                          x="2"
+                          y="2"
+                          rx="5"
+                          ry="5"
+                        />
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                         <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
                       </svg>
@@ -633,8 +679,13 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                     className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-emerald-50 to-teal-50 hover:from-emerald-100 hover:to-teal-100 dark:from-emerald-950/30 dark:to-teal-950/30 dark:hover:from-emerald-900/30 dark:hover:to-teal-900/30 transition-colors group"
                   >
                     <Avatar className="h-10 w-10 border-2 border-emerald-200">
-                      <AvatarImage src={project.creator.image} alt={project.creator.name} />
-                      <AvatarFallback className="bg-emerald-700">{project.creator.name.charAt(0)}</AvatarFallback>
+                      <AvatarImage
+                        src={project.creator.image}
+                        alt={project.creator.name}
+                      />
+                      <AvatarFallback className="bg-emerald-700">
+                        {project.creator.name.charAt(0)}
+                      </AvatarFallback>
                     </Avatar>
                     <div className="flex-1">
                       <div className="font-medium flex items-center gap-2">
@@ -657,7 +708,9 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                           </svg>
                         )}
                       </div>
-                      <div className="text-xs text-muted-foreground">View profile</div>
+                      <div className="text-xs text-muted-foreground">
+                        View profile
+                      </div>
                     </div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -682,6 +735,5 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
         </div>
       </div>
     </main>
-  )
+  );
 }
-

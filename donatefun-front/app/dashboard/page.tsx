@@ -1,23 +1,25 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Badge } from "@/components/ui/badge"
-import { motion } from "framer-motion"
-import DashboardProjectCard from "@/components/dashboard-project-card"
-import DashboardStats from "@/components/dashboard-stats"
-import MobileDashboardNav from "@/components/mobile-dashboard-nav"
-import { useToast } from "@/hooks/use-toast"
+import { useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
+import DashboardProjectCard from "@/components/dashboard-project-card";
+import DashboardStats from "@/components/dashboard-stats";
+import MobileDashboardNav from "@/components/mobile-dashboard-nav";
+import { useToast } from "@/hooks/use-toast";
+import Image from "next/image";
 
 // Mock data for user's projects
 const MY_PROJECTS = [
   {
     id: "1",
     title: "Clean Water Initiative",
-    description: "Providing clean water access to rural communities in developing countries.",
+    description:
+      "Providing clean water access to rural communities in developing countries.",
     category: "Environment",
     goalAmount: 10000,
     raisedAmount: 6500,
@@ -29,12 +31,13 @@ const MY_PROJECTS = [
     ],
     imageUrl: "/clean-water-initiative.jpg",
     daysLeft: 12,
-    status: "active",
+    status: "active" as const,
   },
   {
     id: "2",
     title: "Education for All",
-    description: "Building a school and providing educational resources for underprivileged children.",
+    description:
+      "Building a school and providing educational resources for underprivileged children.",
     category: "Education",
     goalAmount: 25000,
     raisedAmount: 15000,
@@ -47,12 +50,13 @@ const MY_PROJECTS = [
     ],
     imageUrl: "/education-for-all.png",
     daysLeft: 30,
-    status: "active",
+    status: "active" as const,
   },
   {
     id: "3",
     title: "Medical Supplies for Clinic",
-    description: "Providing essential medical supplies to a community clinic serving low-income families.",
+    description:
+      "Providing essential medical supplies to a community clinic serving low-income families.",
     category: "Healthcare",
     goalAmount: 15000,
     raisedAmount: 15000,
@@ -64,15 +68,14 @@ const MY_PROJECTS = [
     ],
     imageUrl: "/medical-supplies-for-clinic.jpg",
     daysLeft: 0,
-    status: "completed",
+    status: "completed" as const,
   },
-]
+];
 
 // Mock data for donations
 const MY_DONATIONS = [
   {
     id: "d1",
-    projectId: "4",
     projectTitle: "Community Garden Project",
     amount: 50,
     date: "2023-11-15",
@@ -81,7 +84,6 @@ const MY_DONATIONS = [
   },
   {
     id: "d2",
-    projectId: "5",
     projectTitle: "Homeless Shelter Renovation",
     amount: 100,
     date: "2023-10-28",
@@ -90,34 +92,39 @@ const MY_DONATIONS = [
   },
   {
     id: "d3",
-    projectId: "6",
     projectTitle: "Wildlife Conservation Effort",
     amount: 75,
     date: "2023-09-12",
     imageUrl: "/placeholder.svg?height=200&width=300",
     category: "Environment",
   },
-]
+];
 
 export default function DashboardPage() {
-  const [activeTab, setActiveTab] = useState("overview")
-  const { toast } = useToast()
+  const [activeTab, setActiveTab] = useState("overview");
+  const { toast } = useToast();
 
-  const handleCheckpointSubmit = (projectId: string) => {
+  const handleCheckpointSubmit = () => {
     toast({
       title: "Checkpoint proof submitted",
       description: "Your proof has been submitted for review.",
-    })
-  }
+    });
+  };
 
   return (
     <main className="min-h-screen pb-20 md:pb-0">
       <div className="bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-700 text-white">
         <div className="container py-8 md:py-12">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
               <h1 className="text-2xl md:text-3xl font-bold">My Dashboard</h1>
-              <p className="text-indigo-100">Manage your projects and donations</p>
+              <p className="text-indigo-100">
+                Manage your projects and donations
+              </p>
             </motion.div>
 
             <motion.div
@@ -128,7 +135,10 @@ export default function DashboardPage() {
               whileTap={{ scale: 0.95 }}
             >
               <Link href="/create">
-                <Button size="sm" className="bg-white text-indigo-600 hover:bg-indigo-50 shadow-md">
+                <Button
+                  size="sm"
+                  className="bg-white text-indigo-600 hover:bg-indigo-50 shadow-md"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -159,25 +169,37 @@ export default function DashboardPage() {
           >
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
               <div className="text-2xl font-bold">
-                ${MY_PROJECTS.reduce((sum, p) => sum + p.raisedAmount, 0).toLocaleString()}
+                $
+                {MY_PROJECTS.reduce(
+                  (sum, p) => sum + p.raisedAmount,
+                  0
+                ).toLocaleString()}
               </div>
               <div className="text-sm text-indigo-200">Total Raised</div>
             </div>
 
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
               <div className="text-2xl font-bold">
-                ${MY_DONATIONS.reduce((sum, d) => sum + d.amount, 0).toLocaleString()}
+                $
+                {MY_DONATIONS.reduce(
+                  (sum, d) => sum + d.amount,
+                  0
+                ).toLocaleString()}
               </div>
               <div className="text-sm text-indigo-200">Total Donated</div>
             </div>
 
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-              <div className="text-2xl font-bold">{MY_PROJECTS.filter((p) => p.status === "active").length}</div>
+              <div className="text-2xl font-bold">
+                {MY_PROJECTS.filter((p) => p.status === "active").length}
+              </div>
               <div className="text-sm text-indigo-200">Active Projects</div>
             </div>
 
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-              <div className="text-2xl font-bold">{MY_PROJECTS.filter((p) => p.status === "completed").length}</div>
+              <div className="text-2xl font-bold">
+                {MY_PROJECTS.filter((p) => p.status === "completed").length}
+              </div>
               <div className="text-sm text-indigo-200">Completed Projects</div>
             </div>
           </motion.div>
@@ -197,10 +219,17 @@ export default function DashboardPage() {
 
           <TabsContent value="overview" className="mt-6">
             <DashboardStats
-              totalRaised={MY_PROJECTS.reduce((sum, p) => sum + p.raisedAmount, 0)}
+              totalRaised={MY_PROJECTS.reduce(
+                (sum, p) => sum + p.raisedAmount,
+                0
+              )}
               totalDonated={MY_DONATIONS.reduce((sum, d) => sum + d.amount, 0)}
-              activeProjects={MY_PROJECTS.filter((p) => p.status === "active").length}
-              completedProjects={MY_PROJECTS.filter((p) => p.status === "completed").length}
+              activeProjects={
+                MY_PROJECTS.filter((p) => p.status === "active").length
+              }
+              completedProjects={
+                MY_PROJECTS.filter((p) => p.status === "completed").length
+              }
             />
 
             <div className="mt-8">
@@ -240,7 +269,19 @@ export default function DashboardPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                     >
-                      <DashboardProjectCard project={project} onCheckpointSubmit={handleCheckpointSubmit} />
+                      <div className="relative h-48 w-full">
+                        <Image
+                          src={project.imageUrl}
+                          alt={project.title}
+                          fill
+                          className="object-cover rounded-lg"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      </div>
+                      <DashboardProjectCard
+                        project={project}
+                        onCheckpointSubmit={handleCheckpointSubmit}
+                      />
                     </motion.div>
                   ))}
               </div>
@@ -295,20 +336,27 @@ export default function DashboardPage() {
                             key={donation.id}
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
+                            transition={{
+                              duration: 0.3,
+                              delay: 0.4 + index * 0.1,
+                            }}
                             className="hover:bg-indigo-50/50 dark:hover:bg-indigo-950/10 transition-colors"
                           >
                             <td className="py-3 px-4">
                               <div className="flex items-center gap-3">
-                                <div className="h-10 w-10 rounded-md bg-gray-200 overflow-hidden">
-                                  <img
-                                    src={donation.imageUrl || "/placeholder.svg"}
+                                <div className="relative h-12 w-12">
+                                  <Image
+                                    src={donation.imageUrl}
                                     alt={donation.projectTitle}
-                                    className="h-full w-full object-cover"
+                                    fill
+                                    className="object-cover rounded-lg"
+                                    sizes="48px"
                                   />
                                 </div>
                                 <div>
-                                  <div className="font-medium">{donation.projectTitle}</div>
+                                  <div className="font-medium">
+                                    {donation.projectTitle}
+                                  </div>
                                   <div className="text-xs text-gray-500">
                                     <Badge className="bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-700 dark:from-indigo-900/30 dark:to-purple-900/30 dark:text-indigo-300 border-none">
                                       {donation.category}
@@ -320,7 +368,9 @@ export default function DashboardPage() {
                             <td className="py-3 px-4 font-medium text-indigo-600 dark:text-indigo-400">
                               ${donation.amount}
                             </td>
-                            <td className="py-3 px-4 text-gray-500">{donation.date}</td>
+                            <td className="py-3 px-4 text-gray-500">
+                              {donation.date}
+                            </td>
                             <td className="py-3 px-4">
                               <Link href={`/project/${donation.projectId}`}>
                                 <Button
@@ -395,7 +445,19 @@ export default function DashboardPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <DashboardProjectCard project={project} onCheckpointSubmit={handleCheckpointSubmit} />
+                  <div className="relative h-48 w-full">
+                    <Image
+                      src={project.imageUrl}
+                      alt={project.title}
+                      fill
+                      className="object-cover rounded-lg"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </div>
+                  <DashboardProjectCard
+                    project={project}
+                    onCheckpointSubmit={handleCheckpointSubmit}
+                  />
                 </motion.div>
               ))}
             </div>
@@ -421,7 +483,11 @@ export default function DashboardPage() {
               My Donations
             </h2>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
               <Card className="overflow-hidden border-none shadow-md bg-gradient-to-r from-white to-indigo-50 dark:from-gray-900 dark:to-indigo-950/30">
                 <div className="overflow-x-auto">
                   <table className="w-full">
@@ -439,20 +505,27 @@ export default function DashboardPage() {
                           key={donation.id}
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.3, delay: 0.1 + index * 0.1 }}
+                          transition={{
+                            duration: 0.3,
+                            delay: 0.1 + index * 0.1,
+                          }}
                           className="hover:bg-indigo-50/50 dark:hover:bg-indigo-950/10 transition-colors"
                         >
                           <td className="py-3 px-4">
                             <div className="flex items-center gap-3">
-                              <div className="h-10 w-10 rounded-md bg-gray-200 overflow-hidden">
-                                <img
-                                  src={donation.imageUrl || "/placeholder.svg"}
+                              <div className="relative h-12 w-12">
+                                <Image
+                                  src={donation.imageUrl}
                                   alt={donation.projectTitle}
-                                  className="h-full w-full object-cover"
+                                  fill
+                                  className="object-cover rounded-lg"
+                                  sizes="48px"
                                 />
                               </div>
                               <div>
-                                <div className="font-medium">{donation.projectTitle}</div>
+                                <div className="font-medium">
+                                  {donation.projectTitle}
+                                </div>
                                 <div className="text-xs text-gray-500">
                                   <Badge className="bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-700 dark:from-indigo-900/30 dark:to-purple-900/30 dark:text-indigo-300 border-none">
                                     {donation.category}
@@ -464,7 +537,9 @@ export default function DashboardPage() {
                           <td className="py-3 px-4 font-medium text-indigo-600 dark:text-indigo-400">
                             ${donation.amount}
                           </td>
-                          <td className="py-3 px-4 text-gray-500">{donation.date}</td>
+                          <td className="py-3 px-4 text-gray-500">
+                            {donation.date}
+                          </td>
                           <td className="py-3 px-4">
                             <Link href={`/project/${donation.projectId}`}>
                               <Button
@@ -506,7 +581,11 @@ export default function DashboardPage() {
             </h2>
 
             <div className="space-y-4">
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+              >
                 <Card className="overflow-hidden border-none shadow-md bg-gradient-to-r from-white to-green-50 dark:from-gray-900 dark:to-green-950/30">
                   <CardContent className="p-4">
                     <div className="flex items-start gap-4">
@@ -529,9 +608,12 @@ export default function DashboardPage() {
                       <div>
                         <div className="font-medium">Checkpoint Approved</div>
                         <p className="text-sm text-gray-500 mt-1">
-                          Your "Team Deployment" checkpoint for "Clean Water Initiative" has been approved.
+                          Your Team &quot;Deployment&quot; checkpoint for
+                          &quot;Clean Water Initiative&quot; has been approved.
                         </p>
-                        <div className="text-xs text-gray-400 mt-2">2 hours ago</div>
+                        <div className="text-xs text-gray-400 mt-2">
+                          2 hours ago
+                        </div>
                       </div>
                     </div>
                   </CardContent>
@@ -566,9 +648,12 @@ export default function DashboardPage() {
                       <div>
                         <div className="font-medium">New Donation</div>
                         <p className="text-sm text-gray-500 mt-1">
-                          You received a $50 donation from John Doe for "Education for All".
+                          You received a $50 donation from John Doe for
+                          &quot;Education for All&quot;.
                         </p>
-                        <div className="text-xs text-gray-400 mt-2">Yesterday</div>
+                        <div className="text-xs text-gray-400 mt-2">
+                          Yesterday
+                        </div>
                       </div>
                     </div>
                   </CardContent>
@@ -603,9 +688,12 @@ export default function DashboardPage() {
                       <div>
                         <div className="font-medium">Checkpoint Reminder</div>
                         <p className="text-sm text-gray-500 mt-1">
-                          Your "Installation Phase" checkpoint for "Clean Water Initiative" is due in 5 days.
+                          Your &quot;Installation Phase&quot; checkpoint for
+                          &quot;Clean Water Initiative&quot; is due in 5 days.
                         </p>
-                        <div className="text-xs text-gray-400 mt-2">2 days ago</div>
+                        <div className="text-xs text-gray-400 mt-2">
+                          2 days ago
+                        </div>
                       </div>
                     </div>
                   </CardContent>
@@ -618,6 +706,5 @@ export default function DashboardPage() {
 
       <MobileDashboardNav activeTab={activeTab} setActiveTab={setActiveTab} />
     </main>
-  )
+  );
 }
-

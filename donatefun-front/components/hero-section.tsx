@@ -34,7 +34,7 @@ export default function HeroSection() {
       {/* Animated background elements */}
       <motion.div
         className="absolute inset-0 overflow-hidden"
-        style={{ opacity }}
+        style={{ opacity, y: isMobile ? 0 : y }}
       >
         {/* Colorful gradient blobs */}
         <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-pink-500/20 blur-3xl"></div>

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import { motion, AnimatePresence } from "framer-motion";
-import Providers from "./privy";
 import { useFundWallet, usePrivy } from "@privy-io/react-auth";
 import {
   DropdownMenu,
@@ -16,14 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { LogOut, Wallet, Plus } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { useBalance } from "wagmi";
 import { Address } from "viem";
 
@@ -31,7 +23,7 @@ import { Address } from "viem";
 function HeaderContent() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { login, authenticated, user, connectWallet, logout } = usePrivy();
+  const { login, authenticated, user, logout } = usePrivy();
   const { toast } = useToast();
   const [isDepositOpen, setIsDepositOpen] = useState(false);
   const { data: balanceData } = useBalance({
