@@ -2,6 +2,7 @@
 import { useReadContract, useWriteContract } from "wagmi";
 import { formatEther, parseEther } from "viem";
 import CampaignManagerABI from "@/app/CampaignManager.json";
+import { useEffect } from "react";
 
 const CONTRACT_ADDRESS = "0xA319151b0B5C2143f7A7a9a2E3822F0E34cEF900";
 
@@ -119,19 +120,26 @@ export function useCampaignContract() {
     args: [BigInt(0)], // Campaign ID 0
   }) as { data: any[] | undefined };
 
-  const { data: contributions } = useReadContract({
+  const { data: contributions, refetch } = useReadContract({
     address: CONTRACT_ADDRESS,
     abi: CampaignManagerABI.abi,
     functionName: "contributions",
     query: {
+      staleTime: 1000,
+      gcTime: 1000,
       refetchInterval: 1000,
-      refetchIntervalInBackground: true,
-      refetchOnWindowFocus: true,
-      refetchOnMount: true,
-      refetchOnReconnect: true,
     },
     args: [BigInt(0)], // Campaign ID 0
   });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      console.log("refetching");
+      refetch();
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const { writeContract: contribute, isPending } = useWriteContract();
 
