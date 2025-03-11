@@ -1,6 +1,6 @@
 # Donate.fun - Blockchain-Powered Transparent Donations
 
-![Donate.fun Logo](public/next.svg)
+*Build in 36 hours for the BSA Privacy x Verifiability Hackathon 2025*
 
 ## Reimagining Charitable Giving with Blockchain
 
