@@ -91,10 +91,6 @@ We welcome contributions to Donate.fun! Please see our [CONTRIBUTING.md](CONTRIB
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Contact
-
-For questions or support, reach out to us at [contact@donate.fun](mailto:contact@donate.fun).
-
 ---
 
 _Donate.fun - Making charitable giving transparent, efficient, and trustworthy through blockchain technology._
